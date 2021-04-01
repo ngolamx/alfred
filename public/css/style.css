@@ -32,7 +32,7 @@ body {
   font-weight: 300;
   font-family: 'Lato', sans-serif;
   color: #777;
-  padding: 3rem;
+  padding: 0.5rem;
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -323,7 +323,7 @@ body {
   }
 }
 .header__logo img {
-  height: 3.5rem;
+  height: 7rem;
 }
 @media only screen and (max-width: 62.5em) {
   .header__logo {
@@ -823,7 +823,7 @@ body {
   }
 }
 .footer__logo img {
-  height: 3rem;
+  height: 7rem;
 }
 .footer__nav {
   list-style: none;
