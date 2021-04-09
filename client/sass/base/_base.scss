@@ -39,7 +39,6 @@ body {
 
 .container {
     display: grid;
-    grid-gap: 10px;
     font-size: large;
     grid-template-rows: repeat(min-content, 2) max-content min-content;
     @media only screen and (max-width: $bp-large) {
