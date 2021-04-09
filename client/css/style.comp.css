@@ -46,6 +46,7 @@ body {
 
 .container {
   display: grid;
+  grid-gap: 10px;
   font-size: large;
   grid-template-rows: repeat(min-content, 2) max-content min-content; }
 
@@ -108,27 +109,9 @@ body {
     .header__logo img {
       width: 15rem; }
 
-.nav {
-  background-color: #388E3C;
-  color: #C8E6C9;
-  height: 50px;
+.navigator {
   display: flex;
   justify-content: center; }
-  .nav__list {
-    list-style: none;
+  .navigator__list {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-grow: 0.3; }
-  .nav__item {
-    font-weight: 500; }
-    .nav__item a:link,
-    .nav__item a:visited {
-      display: inline-block;
-      text-decoration: none;
-      color: inherit;
-      transition: all .2s; }
-    .nav__item a:hover,
-    .nav__item a:active {
-      color: #FFFFFF;
-      border-bottom: 3px solid #FFFFFF; }
+    justify-content: center; }
