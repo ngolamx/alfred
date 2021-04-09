@@ -1,0 +1,21 @@
+.orders {
+  .content {
+    &__head {
+      display: flex;
+      align-items: center;
+      justify-content: stretch;
+      margin: 1rem 2rem;
+    }
+    h3 {
+      margin-right: 2rem;
+    }
+    .header--md {
+      color: $primary-text-color;
+      font-size: 2.8rem;
+    }
+    button {
+      margin-right: auto;
+    }
+
+  }
+}

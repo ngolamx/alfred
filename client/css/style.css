@@ -15,6 +15,56 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
 1em = 16px
 */
+.btn {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23);
+  outline: 0;
+  border: none;
+  height: 5rem;
+  width: 5rem;
+  line-height: 2.5rem;
+  text-align: center;
+  padding: 1.5rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all .2s ease;
+  background-color: #CDDC39; }
+  .btn:hover .btn__icon {
+    fill: #C8E6C9; }
+  .btn--circle {
+    border-radius: 100%; }
+  .btn__icon {
+    fill: #FFFFFF;
+    width: 2rem;
+    height: 2rem; }
+
+.search-box {
+  display: flex;
+  height: 4rem; }
+  .search-box__icon {
+    border-radius: 10rem 0 0 10rem;
+    border: 1px solid #757575;
+    border-right: none;
+    height: 100%;
+    width: 4rem;
+    padding: 5px 8px;
+    fill: #757575;
+    background-color: #FFFFFF; }
+  .search-box__input {
+    border-radius: 0 10rem 10rem 0;
+    border: 1px solid #757575;
+    border-left: none;
+    outline: none;
+    width: 30rem;
+    height: 100%;
+    padding-right: 1rem;
+    background-color: #FFFFFF;
+    font-family: inherit;
+    font-size: 1.8rem;
+    color: #212121; }
+  .search-box__input:focus,
+  .search-box:focus-within .search-box__icon {
+    border-color: #CDDC39; }
+
 *,
 *::after,
 *::before {
@@ -132,3 +182,19 @@ body {
     .nav__item a:active {
       color: #FFFFFF;
       border-bottom: 3px solid #FFFFFF; }
+
+.orders .content__head {
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  margin: 1rem 2rem; }
+
+.orders .content h3 {
+  margin-right: 2rem; }
+
+.orders .content .header--md {
+  color: #212121;
+  font-size: 2.8rem; }
+
+.orders .content button {
+  margin-right: auto; }
