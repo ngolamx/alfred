@@ -1,3 +1,20 @@
+/*
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800] is where our normal styles apply
+1800px + :      Big desktop
+
+$breakpoint arguement choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+ORDER: Base + typography > general layout + grid > page layout > components
+
+1em = 16px
+*/
 *,
 *::after,
 *::before {
@@ -5,8 +22,89 @@
   padding: 0;
   box-sizing: inherit; }
 
+html {
+  font-size: 62.5%; }
+  @media only screen and (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media only screen and (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
+  @media only screen and (min-width: 112.5em) {
+    html {
+      font-size: 75%; } }
+
+body {
+  box-sizing: border-box; }
+  @media only screen and (max-width: 56.25em) {
+    body {
+      padding: 0; } }
+
+::selection {
+  background-color: #4CAF50;
+  color: #212121; }
+
+.container {
+  display: grid;
+  grid-gap: 10px;
+  font-size: large;
+  grid-template-rows: repeat(min-content, 2) max-content min-content; }
+
+.container > * {
+  background-color: #C8E6C9;
+  color: #212121; }
+
 body {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   line-height: 1.7;
-  color: #777; }
+  color: #C8E6C9; }
+
+.header {
+  grid-column: 1 / -1;
+  background-color: #212121;
+  color: #FFFFFF;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  .header svg {
+    height: 2rem; }
+  .header .search {
+    display: flex;
+    align-content: center;
+    justify-content: flex-start; }
+    .header .search__icon {
+      fill: #C8E6C9;
+      background-color: #388E3C;
+      width: 3rem;
+      height: 3rem;
+      padding: 5px; }
+    .header .search__input {
+      background-color: #C8E6C9;
+      font-family: inherit;
+      opacity: 1;
+      padding: 2px 7px;
+      outline: none;
+      border: none;
+      height: 30px;
+      width: 25rem; }
+  .header .profile {
+    display: flex;
+    align-content: space-between;
+    justify-content: space-between;
+    width: 25rem; }
+    .header .profile div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; }
+    .header .profile svg {
+      fill: #C8E6C9;
+      width: 2rem;
+      height: 2rem;
+      margin-right: 2px; }
+  .header__logo {
+    display: flex;
+    justify-content: center; }
+    .header__logo img {
+      width: 15rem; }
