@@ -1,2 +1,16 @@
-// COLORS
-$color-grey-dark: #777;
+// COLORS VAR
+$primary-color-dark:   #388E3C;
+$primary-color:        #4CAF50;
+$primary-color-light:  #C8E6C9;
+$primary-color-text:   #FFFFFF;
+$accent-color:         #CDDC39;
+$primary-text-color:   #212121;
+$secondary-text-color: #757575;
+$divider-color:        #BDBDBD;
+
+
+// RESPONSIVE BREAKPOINTS
+$bp-largest: 75em;   // 1200px
+$bp-large: 62.5em;   // 1000px
+$bp-medium: 50em;    // 800px;
+$bp-small: 37.5em;    // 600px;

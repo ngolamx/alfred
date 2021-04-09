@@ -11,8 +11,41 @@
 
   <title>Alfred</title>
 </head>
-<body>
-  <h1>Hello, World!</h1>
-
+<body class="container">
+  <header class="header">
+    <a href="#" class="header__logo">
+      <img src="img/alfred-logo-trans.png" alt="LOGO">
+    </a>
+    <div class="search">
+      <input type="search" id="site-search" class="search__input" name="q"
+       aria-label="Search through site content">
+      <svg class="search__icon">
+        <use xlink:href="img/sprite.svg#icon-search"></use>
+      </svg>
+    </div>
+    <div class="profile">
+      <div class="setings">
+        <svg class="settings__icon">
+          <use xlink:href="img/sprite.svg#icon-cog"></use>
+        </svg>
+        <span class="settings__label">Setting</span>
+      </div>
+      <div class="help">
+        <svg class="help__icon">
+          <use xlink:href="img/sprite.svg#icon-bubble2"></use>
+        </svg>
+        <span class="help__label">Help</span>
+      </div>
+      <div class="user">
+        <svg class="user__icon">
+          <use xlink:href="img/sprite.svg#icon-user"></use>
+        </svg>
+        <span class="user__label">User</span>
+      </div>
+    </div>
+  </header>
+  <nav class="nav">Navigation</nav>
+  <section class="dashboard">Dashboard</section>
+  <footer class="footer">Footer</footer>
 </body>
 </html>
