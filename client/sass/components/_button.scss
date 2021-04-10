@@ -1,4 +1,4 @@
-.btn {
+.flow-btn {
   box-shadow: 0 3px 10px rgba(0, 0, 0, .23);
   outline: 0;
   border: none;
@@ -22,4 +22,24 @@
     width: 2rem;
     height: 2rem;
   }
+}
+
+.btn:link,
+.btn:visited {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-decoration: none;
+  outline: none;
+  width: 20rem;
+  background-color: $primary-color-light;
+  color: $primary-text-color;
+  border: 1px solid $primary-color-light;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.23);
+}
+.btn__icon {
+  fill: $primary-color;
+  width: 2rem;
+  height: 2rem;
 }
