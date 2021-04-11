@@ -8,8 +8,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  svg {
-    height: 2rem;
+  padding: 0 3rem;
+
+  &__text-box {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
   }
 
   .search {
@@ -39,21 +45,24 @@
 
   .profile {
     display: flex;
-    align-content: space-between;
     justify-content: space-between;
-    width: 25rem;
-
+    align-items: center;
     div {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
+    .login {
+      display: flex;
+      align-items: center;
+    }
+
     svg {
       fill: $primary-color-light;
       width: 2rem;
       height: 2rem;
-      margin-right: 2px;
+      margin-right: 1rem;
     }
   }
 
