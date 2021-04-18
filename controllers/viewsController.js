@@ -16,6 +16,10 @@ exports.getIndex = catchAsync(async (req, res, next) => {
   res.status(200).render('index');
 });
 
+exports.getDashboard = catchAsync(async (req, res, next) => {
+  res.status(200).render('dashboard');
+});
+
 exports.getTour = catchAsync(async (req, res, next) => {
   // 1) Get the data, for the requested tour (including reviews and guides)
   const tour = await Tour.findOne({ slug: req.params.slug }).populate({
