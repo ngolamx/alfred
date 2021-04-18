@@ -1,0 +1,38 @@
+.main {
+  position: relative;
+}
+.login-form {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 25%;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23);
+  border-radius: 5px;
+  border: 1px solid $primary-color;
+  background-color: $primary-color-text;
+
+  &__logo {
+    width: 20rem;
+    height: auto;
+  }
+
+  &__heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $primary-text-color;
+  }
+}
+
+.form--login {
+  width: 80%;
+  margin: 3rem auto;
+  & > *:not(last-child) {
+    margin-bottom: 2rem;
+  }
+
+  & > *:last-child {
+    margin-top: 8rem;
+  }
+}

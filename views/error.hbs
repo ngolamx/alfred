@@ -1,12 +1,13 @@
-<main class="main">
-  <div class="error">
-    <div class="error__title">
-    </div>
+<main class="error">
+  <svg class="error__icon">
+    <use xlink:href="img/sprite.svg#icon-error_outline"></use>
+  </svg>
+  <div class="error__body">
+    <h2 class="heading-secondary heading-secondary--error">
+      Error happened!
+    </h2>
+    <h2 class="error__emoji">
+      {{msg}}
+    </h2>
   </div>
 </main>
-<h2 class="heading-secondary heading-secondary--error">
-  Uh oh! Something went wrong!
-</h2>
-<h2 class="error__emoji">
-  😢 🤯 {{msg}}
-</h2>

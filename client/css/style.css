@@ -56,6 +56,18 @@ ORDER: Base + typography > general layout + grid > page layout > components
   width: 2rem;
   height: 2rem; }
 
+button.btn {
+  font-size: 2rem;
+  font-family: inherit;
+  width: 100%;
+  height: 4rem;
+  color: #FFFFFF;
+  border-radius: 2px;
+  background-color: #4CAF50;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.23);
+  cursor: pointer; }
+
 .search-box {
   display: flex;
   height: 4rem; }
@@ -83,6 +95,19 @@ ORDER: Base + typography > general layout + grid > page layout > components
   .search-box__input:focus,
   .search-box:focus-within .search-box__icon {
     border-color: #CDDC39; }
+
+.form__input {
+  width: 100%;
+  font-size: 1.8rem;
+  font-family: inherit;
+  padding: 1rem 1.5rem;
+  border-radius: 2px;
+  border: 1px solid #C8E6C9;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.5); }
+  .form__input:focus {
+    outline: none;
+    border: 1px solid #4CAF50; }
 
 *,
 *::after,
@@ -150,6 +175,30 @@ body {
   text-decoration: none;
   color: currentColor; }
 
+.u-center-text {
+  text-align: center !important; }
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem !important; }
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem !important; }
+  @media only screen and (max-width: 56.25em) {
+    .u-margin-bottom-medium {
+      margin-bottom: 3rem !important; } }
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem !important; }
+  @media only screen and (max-width: 56.25em) {
+    .u-margin-bottom-big {
+      margin-bottom: 5rem !important; } }
+
+.u-margin-top-big {
+  margin-top: 8rem !important; }
+
+.u-margin-top-huge {
+  margin-top: 10rem !important; }
+
 body {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -175,6 +224,23 @@ body {
     font-weight: 700;
     letter-spacing: 1.75rem;
     animation: moveInRight 1s ease-out; }
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(to right, #4CAF50, #388E3C);
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: .2rem;
+  transition: all .2s; }
+  @media only screen and (max-width: 56.25em) {
+    .heading-secondary {
+      font-size: 3rem; } }
+  @media only screen and (max-width: 37.5em) {
+    .heading-secondary {
+      font-size: 2.5rem; } }
 
 .header {
   grid-column: 1 / -1;
@@ -320,3 +386,47 @@ body {
   height: 100vh;
   background-image: linear-gradient(to right bottom, rgba(76, 175, 80, 0.7), rgba(56, 142, 60, 0.7)), url(../img/dalat.jpg);
   background-size: cover; }
+
+.main {
+  position: relative; }
+
+.login-form {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 25%;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23);
+  border-radius: 5px;
+  border: 1px solid #4CAF50;
+  background-color: #FFFFFF; }
+  .login-form__logo {
+    width: 20rem;
+    height: auto; }
+  .login-form__heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #212121; }
+
+.form--login {
+  width: 80%;
+  margin: 3rem auto; }
+  .form--login > *:not(last-child) {
+    margin-bottom: 2rem; }
+  .form--login > *:last-child {
+    margin-top: 8rem; }
+
+.error {
+  width: 60%;
+  margin: 20rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .error__icon {
+    display: inline-block;
+    width: 12rem;
+    height: 12rem;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: #e74c3c; }
