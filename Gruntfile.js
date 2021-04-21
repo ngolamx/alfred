@@ -29,19 +29,25 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      options: {
-        livereload: 35729,
-      },
-      css: {
+      sass: {
         files: 'front-end/**/*.scss',
         tasks: ['sass'],
       },
-      js: {
-        files: 'public/**/**.js',
-      },
-      views: {
-        files: 'views/**/*.hbs',
+      reload: {
+        files: ['public/**/*.*', 'views/**/*.hbs'],
+        options: {
+          livereload: true,
+        }
       }
+      // css: {
+      //   files: 'public/**/*.css',
+      // },
+      // js: {
+      //   files: 'public/**/**.js',
+      // },
+      // views: {
+      //   files: 'views/**/*.hbs',
+      // }
     }
   });
 
