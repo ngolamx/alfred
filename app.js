@@ -21,12 +21,8 @@ const bookingRouter = require('./routes/bookingRoutes');
 const bookingController = require('./controllers/bookingController');
 const viewRouter = require('./routes/viewRoutes');
 
-
-
-
 // Start express app
 const app = express();
-
 app.enable('trust proxy');
 
 app.engine('.hbs', exphbs({extname: '.hbs'}));
@@ -49,7 +45,9 @@ app.options('*', cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set security HTTP headers
-app.use(helmet());
+if (process.env.NODE_ENV === 'production') {
+  app.use(helmet());
+}
 
 // Development logging
 if (process.env.NODE_ENV === 'development') {
