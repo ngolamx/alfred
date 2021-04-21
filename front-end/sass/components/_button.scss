@@ -1,0 +1,58 @@
+.flow-btn {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .23);
+  outline: 0;
+  border: none;
+  height: 5rem;
+  width: 5rem;
+  line-height: 2.5rem;
+  text-align: center;
+  padding: 1.5rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all .2s ease;
+  background-color: $accent-color;
+  &:hover &__icon {
+    fill: $primary-color-light;
+  }
+  &--circle {
+    border-radius: 100%;
+  }
+  &__icon {
+    fill: $primary-color-text;
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.btn:link,
+.btn:visited {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-decoration: none;
+  outline: none;
+  width: 20rem;
+  background-color: $primary-color-light;
+  color: $primary-text-color;
+  border: 1px solid $primary-color-light;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.23);
+}
+.btn__icon {
+  fill: $primary-color;
+  width: 2rem;
+  height: 2rem;
+}
+
+button.btn {
+  font-size: 2rem;
+  font-family: inherit;
+  width: 100%;
+  height: 4rem;
+  color: $primary-color-text;
+  border-radius: 2px;
+  background-color: $primary-color;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.23);
+  cursor: pointer;
+}
