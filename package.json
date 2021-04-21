@@ -55,6 +55,7 @@
     "eslint-plugin-react": "^7.23.1",
     "grunt": "^1.3.0",
     "grunt-contrib-sass": "^2.0.0",
+    "grunt-contrib-watch": "^1.1.0",
     "grunt-postcss": "^0.9.0",
     "parcel-bundler": "^1.12.5",
     "pixrem": "^5.0.0",

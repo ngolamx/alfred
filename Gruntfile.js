@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          '.temp/main.css': 'front-end/sass/main.scss'
+          'public/css/style.css': 'front-end/sass/main.scss'
         }
       }
     },
@@ -24,14 +24,25 @@ module.exports = function(grunt) {
         ]
       },
       dist: {
-        src: '.temp/main.css',
+        src: 'public/css/style.css',
         dest: 'public/css/style.css'
+      }
+    },
+    watch: {
+      css: {
+        files: 'front-end/**/*.scss',
+        tasks: ['sass'],
+        options: {
+          livereload: true,
+        },
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-postcss');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('build:css', ['sass', 'postcss']);
+  grunt.registerTask('default', ['watch']);
 };

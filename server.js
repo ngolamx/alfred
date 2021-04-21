@@ -50,7 +50,7 @@ process.on('SIGTERM', () => {
 // Livereload server
 if (process.env.NODE_ENV === 'development') {
   app.locals.dev_mode = true;
-  const livereload = require('livereload');
-  const liserver = livereload.createServer();
-  liserver.watch(__dirname + "/public");
+  // const livereload = require('livereload');
+  // const liserver = livereload.createServer();
+  // liserver.watch(__dirname + "/public");
 }
