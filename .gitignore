@@ -1,3 +1,5 @@
 node_modules
 .cache/
 client/node_modules/
+public/js/
+public/js/alerts.js public/js/bundle.css public/js/bundle.css.map public/js/bundle.js public/js/bundle.js.map public/js/index.js public/js/login.js public/js/mapbox.js public/js/stripe.js public/js/updateSettings.js
