@@ -107,18 +107,44 @@ button.btn {
 }
 
 .form__input {
-  width: 100%;
-  font-size: 1.8rem;
   font-family: inherit;
-  padding: 1rem 1.5rem;
-  border-radius: 2px;
-  border: 1px solid #C8E6C9;
-  display: block;
-  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 1.8rem;
+  border: none;
+  outline: none;
+  height: 2rem;
+  border-bottom: 1px solid #BDBDBD;
+  line-height: 1.5em;
+  flex: 1;
+  position: relative;
 }
 .form__input:focus {
-  outline: none;
-  border: 1px solid #4CAF50;
+  border-bottom: 1px solid #4CAF50;
+}
+.form__input[type=date]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  position: absolute;
+  width: auto;
+}
+.form__group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.form__group:not(:last-child) {
+  margin-bottom: 2rem;
+}
+.form__label {
+  flex-basis: 3rem;
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+.form .icon {
+  color: #757575;
+  font-size: 2rem;
 }
 
 .alert {
@@ -145,6 +171,42 @@ button.btn {
 
 .alert--error {
   background-color: #e74c3c;
+}
+
+.dialog {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(117, 117, 117, 0.5);
+}
+.dialog__container {
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  color: #212121;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.23);
+}
+.dialog__header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #757575;
+}
+.dialog__header .icon-new {
+  font-size: 6rem;
+}
+.dialog__header .icon-close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 3rem;
+  cursor: pointer;
 }
 
 *,
@@ -514,6 +576,20 @@ body {
   border-radius: 5px;
   border: 1px solid #4CAF50;
   background-color: #FFFFFF;
+}
+.login-form .form__input {
+  width: 100%;
+  font-size: 1.8rem;
+  font-family: inherit;
+  padding: 1rem 1.5rem;
+  border-radius: 2px;
+  border: 1px solid #C8E6C9;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.login-form .form__input:focus {
+  outline: none;
+  border: 1px solid #4CAF50;
 }
 .login-form__logo {
   width: 20rem;

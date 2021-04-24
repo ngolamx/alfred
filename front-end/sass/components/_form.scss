@@ -1,25 +1,48 @@
 .form {
-  &__group {
-
-  }
-
-  &__label {
-
-  }
-
   &__input {
-    width: 100%;
-    font-size: 1.8rem;
     font-family: inherit;
-    padding: 1rem 1.5rem;
-    border-radius: 2px;
-    border: 1px solid $primary-color-light;
-    display: block;
-    background-color: rgba($primary-color-text, .5);
+    font-size: 1.8rem;
+    border: none;
+    outline: none;
+    height: 2rem;
+    border-bottom: 1px solid $divider-color;
+    line-height: 1.5em;
+    flex: 1;
+    position: relative;
     &:focus {
-      outline: none;
-      border: 1px solid $primary-color;
+      border-bottom: 1px solid $primary-color;
     }
   }
 
+  &__input[type="date"] {
+    &::-webkit-calendar-picker-indicator {
+      background: transparent;
+      color: transparent;
+      cursor: pointer;
+      height: auto;
+      position: absolute;
+      width: auto;
+    }
+  }
+
+  &__group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__label {
+    flex-basis: 3rem;
+    margin-right: .5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .icon {
+    color: $secondary-text-color;
+    font-size: 2rem;
+  }
 }

@@ -4,7 +4,10 @@
   "description": "Built using modern technologies: node.js, express, mongoDB, mongoose and friends 😁",
   "main": "app.js",
   "nodemonConfig": {
-    "ignore": ["./public", "./front-end"]
+    "ignore": [
+      "./public",
+      "./front-end"
+    ]
   },
   "scripts": {
     "start": "node server.js",

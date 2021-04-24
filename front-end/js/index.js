@@ -6,6 +6,7 @@ import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
 import { showAlert } from './alerts';
+import { createOrder } from './orders';
 
 // DOM ELEMENTS
 const mapBox = document.getElementById('map');
@@ -14,6 +15,15 @@ const logOutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const bookBtn = document.getElementById('book-tour');
+const flowBtn = document.querySelector('.flow-btn');
+
+
+//Date picker
+window.picker = TinyDatePicker('.date-picker', {
+  mode: 'dp-below'
+});
+
+
 
 // DELEGATION
 if (mapBox) {
@@ -66,6 +76,11 @@ if (bookBtn)
     e.target.textContent = 'Processing...';
     const { tourId } = e.target.dataset;
     bookTour(tourId);
+  });
+
+if (flowBtn)
+  flowBtn.addEventListener('click', e => {
+    createOrder();
   });
 
 const alertMessage = document.querySelector('body').dataset.alert;

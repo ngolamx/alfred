@@ -2,6 +2,23 @@
   position: relative;
 }
 .login-form {
+  .form {
+    &__input {
+      width: 100%;
+      font-size: 1.8rem;
+      font-family: inherit;
+      padding: 1rem 1.5rem;
+      border-radius: 2px;
+      border: 1px solid $primary-color-light;
+      display: block;
+      background-color: rgba($primary-color-text, .5);
+      &:focus {
+        outline: none;
+        border: 1px solid $primary-color;
+      }
+    }
+
+  }
   position: absolute;
   left: 50%;
   top: 50%;

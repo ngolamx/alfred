@@ -65298,7 +65298,21 @@ var bookTour = /*#__PURE__*/function () {
 }();
 
 exports.bookTour = bookTour;
-},{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js","stripe":"../../node_modules/stripe/lib/stripe.js"}],"index.js":[function(require,module,exports) {
+},{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js","stripe":"../../node_modules/stripe/lib/stripe.js"}],"orders.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createOrder = void 0;
+
+var createOrder = function createOrder() {// 1. Open dialog
+  // 2. Save order
+  // 3. Close dialog
+};
+
+exports.createOrder = createOrder;
+},{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 require("core-js/modules/es6.array.copy-within.js");
@@ -65575,6 +65589,8 @@ var _stripe = require("./stripe");
 
 var _alerts = require("./alerts");
 
+var _orders = require("./orders");
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -65585,7 +65601,12 @@ var loginForm = document.querySelector('.form--login');
 var logOutBtn = document.querySelector('.nav__el--logout');
 var userDataForm = document.querySelector('.form-user-data');
 var userPasswordForm = document.querySelector('.form-user-password');
-var bookBtn = document.getElementById('book-tour'); // DELEGATION
+var bookBtn = document.getElementById('book-tour');
+var flowBtn = document.querySelector('.flow-btn'); //Date picker
+
+window.picker = TinyDatePicker('.date-picker', {
+  mode: 'dp-below'
+}); // DELEGATION
 
 if (mapBox) {
   var locations = JSON.parse(mapBox.dataset.locations);
@@ -65679,7 +65700,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38401" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37319" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
