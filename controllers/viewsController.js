@@ -13,7 +13,13 @@ exports.alerts = (req, res, next) => {
 };
 
 exports.getIndex = catchAsync(async (req, res, next) => {
-  res.status(200).render('index');
+  if (!req.user) {
+    return res.status(200).render('index');
+  }
+  return res.status(200).render('alfred', {
+    layout: 'alfred'
+  });
+
 });
 
 exports.getDashboard = catchAsync(async (req, res, next) => {

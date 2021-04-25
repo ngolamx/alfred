@@ -18,13 +18,6 @@ const bookBtn = document.getElementById('book-tour');
 const flowBtn = document.querySelector('.flow-btn');
 
 
-//Date picker
-window.picker = TinyDatePicker('.date-picker', {
-  mode: 'dp-below'
-});
-
-
-
 // DELEGATION
 if (mapBox) {
   const locations = JSON.parse(mapBox.dataset.locations);
