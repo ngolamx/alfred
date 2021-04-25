@@ -43,7 +43,7 @@ app.options('*', cors());
 
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'app')));
+app.use('/app', express.static(path.join(__dirname, 'app')));
 
 // Set security HTTP headers
 if (process.env.NODE_ENV === 'production') {

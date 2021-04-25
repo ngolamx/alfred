@@ -1,0 +1,73 @@
+/* $primary-color-dark:   #388E3C; */
+/* $primary-color:        #4CAF50; */
+/* $primary-color-light:  #C8E6C9; */
+/* $primary-color-text:   #FFFFFF; */
+/* $accent-color:         #CDDC39; */
+/* $primary-text-color:   #212121; */
+/* $secondary-text-color: #757575; */
+/* $divider-color:        #BDBDBD; */
+
+/* // INDICATOR COLOR */
+/* $indicator-color-green: #27ae60; */
+/* $indicator-color-red: #e74c3c; */
+/* $indicator-color-yellow: #f1c40f; */
+
+:root {
+  --color-background-black: #212121;
+  --color-text-white: #FFF;
+}
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+.logo img {
+  height: 4rem;
+}
+
+
+svg.icon-logout {
+  width: 30px;
+  height: 30px;
+  margin-left: .8rem;
+}
+
+header {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  background-color: var(--color-background-black);
+  color: var(--color-text-white);
+  height: 4rem;
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1rem;
+  align-items: center;
+  list-style: none;
+}
+
+
+.link:link,
+.link:visited {
+  color: currentColor;
+  font-size: 1.8rem;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
