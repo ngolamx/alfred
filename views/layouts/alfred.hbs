@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {{#if dev_mode}}
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: http://localhost:35729; style-src 'self' 'unsafe-inline' https:; connect-src 'self' ws://localhost:35729 ws://localhost:* https:;">
+  {{else}}
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {{/if}}
 
   <link rel="shortcut icon" type"image/png" href="img/favicon.png">
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -13,5 +17,13 @@
 </head>
 <body>
   {{{body}}}
+  <script src="vendor/script.js"></script>
+  <script src="index.js"></script>
+  {{#if dev_mode}}
+    <script>
+      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+      ':35729/livereload.js?snipver=1"></' + 'script>')
+    </script>
+  {{/if}}
 </body>
 </html>

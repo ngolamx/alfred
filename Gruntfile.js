@@ -34,7 +34,7 @@ module.exports = function(grunt) {
         tasks: ['sass'],
       },
       reload: {
-        files: ['public/**/*.*', 'views/**/*.hbs'],
+        files: ['public/**/*.*', 'views/**/*.hbs', 'app/**/*.*'],
         options: {
           livereload: true,
         }
