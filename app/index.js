@@ -5,6 +5,7 @@
   'app/vendor/reqwest.min.js',
   'app/vendor/lazyload.js',
   'app/vendor/picoModal-3.0.0.min.js',
+  'app/vendor/tiny-date-picker.min.js'
   ];
   $script(lib, 'bundle');
 
@@ -25,6 +26,12 @@
       plusEle.addEventListener('click', function(e) {
         e.preventDefault();
         dialog.show();
+        document.querySelectorAll('.date-picker')
+                .forEach(function(ele) {
+                  TinyDatePicker(ele, {
+                    mode: 'dp-below'
+                  });
+                });
       });
       reqwest('/app/templates/add-order.html').then(function(resp) {
          dialog = picoModal({
@@ -52,6 +59,7 @@
       addOrderHandler();
     });
     LazyLoad.css('app/css/style.css');
+    LazyLoad.css('app/vendor/tiny-date-picker.min.css');
 
   }
 
