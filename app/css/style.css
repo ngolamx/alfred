@@ -315,7 +315,7 @@ label.icon-calendar svg {
 /* DATE PICKER */
 .dp-below {
   z-index: 100001;
-  width: 22rem !important;
+  width: 26rem !important;
 }
 .dp-below .dp-cal {
   min-height: 20rem;
