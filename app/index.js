@@ -68,6 +68,11 @@
       plusEle.addEventListener('click', function(e) {
         e.preventDefault();
         dialog.show();
+        // Bind form actions
+        document.querySelector('form.add-order-form').addEventListener('submit', function(event) {
+          event.preventDefault();
+          event.stopPropagation();
+        });
         setupCalendarInput();
       });
       reqwest('/app/templates/add-order.html').then(function(resp) {

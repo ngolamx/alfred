@@ -243,6 +243,7 @@ form .btn {
 }
 
 form .btn.btn-cancel {
+  line-height: 2;
   background: #fdfdfd;
   color: var(--color-black);
 }
@@ -275,6 +276,7 @@ form .form-group {
 
 form .form-group .date-picker {
   width: calc(100% - 25px);
+  cursor: pointer;
 }
 
 form label.icon-calendar {
