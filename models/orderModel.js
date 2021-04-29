@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const orderSchema = new mongoose.Schema({
   client: {
     type: String,
-    required: [true, 'A tour must have a name']
+    required: [true, 'A client must have a name']
   },
   category: {
     type: String
