@@ -5,7 +5,9 @@
   'app/vendor/reqwest.min.js',
   'app/vendor/lazyload.js',
   'app/vendor/picoModal-3.0.0.min.js',
-  'app/vendor/tiny-date-picker.min.js'
+  'app/vendor/tiny-date-picker.min.js',
+  'app/vendor/form-to-obj.min.js',
+  'app/vendor/notyf.min.js'
   ];
   $script(lib, 'bundle');
 
@@ -62,6 +64,11 @@
   }
 
   var addOrderHandler = function() {
+    var notyf = new Notyf({
+        position: {
+          x: 'right',
+          y: 'top',
+      }});
     var plusEle = document.querySelector('#add-order');
     var dialog;
     if (plusEle) {
@@ -71,7 +78,20 @@
         // Bind form actions
         document.querySelector('form.add-order-form').addEventListener('submit', function(event) {
           event.preventDefault();
-          event.stopPropagation();
+          var obj = formToObj(document.querySelector('form.add-order-form'));
+          reqwest({
+            url: '/api/v1/orders',
+            method: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify(obj),
+            error: function(err) {
+              var message = JSON.parse(err.response).message;
+              notyf.error(message);
+            },
+            success: function(resp) {
+              notyf.success(resp.status);
+            }
+          });
         });
         setupCalendarInput();
       });
@@ -102,6 +122,7 @@
     });
     LazyLoad.css('app/css/style.css');
     LazyLoad.css('app/vendor/tiny-date-picker.min.css');
+    LazyLoad.css('app/vendor/notyf.min.css');
 
   }
 

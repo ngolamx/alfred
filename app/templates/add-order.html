@@ -5,26 +5,26 @@
       <legend>Đơn hàng</legend>
       <div class="form-group">
         <label for="client">Khách hàng</label>
-        <input type="text" id="client">
+        <input type="text" id="client" name="client" autocomplete="off">
       </div>
       <div class="form-group">
         <label for="category">Tên giống</label>
-        <input type="text" id="category">
+        <input type="text" id="category" name="category" autocomplete="off">
       </div>
       <div class="form-group">
         <label for="amount">Số lượng</label>
-        <input type="number" id="amount">
+        <input type="number" id="amount" name="amount" autocomplete="off">
       </div>
     </fieldset>
     <fieldset>
       <legend>Thông tin</legend>
       <div class="form-group">
         <label for="origin">Nguồn gốc</label>
-        <input type="text" id="origin">
+        <input type="text" id="origin" name="origin" autocomplete="off" autocomplete="off">
       </div>
       <div class="form-group">
         <label for="start-date">Ngày cắm</label>
-        <input type="text" id="start-date" readonly="readonly" class="date-picker" autocomplete="off">
+        <input type="text" id="start-date" name="start_date" readonly="readonly" class="date-picker" autocomplete="off">
         <label for="start-date" class="icon-calendar">
           <svg class>
             <use xlink:href="app/img/sprite.svg#icon-calendar"></use>
@@ -33,7 +33,7 @@
       </div>
       <div class="form-group">
         <label for="end-date">Ngày xuất</label>
-        <input type="text" id="end-date" class="date-picker" readonly="readonly" autocomplete="off">
+        <input type="text" id="end-date" name="end_date" class="date-picker" readonly="readonly" autocomplete="off">
         <label for="end-date" class="icon-calendar">
           <svg class>
             <use xlink:href="app/img/sprite.svg#icon-calendar"></use>
