@@ -14,7 +14,7 @@
     "dev:be": "NODE_ENV=development nodemon server.js",
     "dev:fe": "grunt",
     "start:prod": "NODE_ENV=production nodemon server.js",
-    "debug": "ndb server.js",
+    "debug": "NODE_ENV=development ndb server.js",
     "watch:js": "parcel watch ./front-end/js/index.js --out-dir ./public/js --out-file bundle.js --public-url .",
     "build:js": "parcel build ./front-end/js/index.js --out-dir ./public/js --out-file bundle.js --public-url .",
     "build:css": "grunt bulid:css",

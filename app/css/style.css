@@ -343,3 +343,8 @@ label.icon-calendar svg {
 button.dp-next, button.dp-prev {
   top: 5px !important;
 }
+
+/* TOAST */
+.notyf {
+  z-index: 1000002 !important;
+}
