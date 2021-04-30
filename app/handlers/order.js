@@ -45,3 +45,24 @@
       });
   });
 }
+  var getAllOrders = function() {
+    var orders = reqwest({
+      url: '/api/v1/orders',
+      method: 'get',
+      contentType: 'application/json',
+    });
+    var ordersTemplate = reqwest({
+      url: 'app/templates/order-list.html',
+      method: 'get',
+    });
+
+    RSVP.all([orders, ordersTemplate])
+        .then(function(resp) {
+          var template = Handlebars.compile(resp[1]);
+          var ele = template({ orders: resp[0].data.data });
+          document.querySelector('main').insertAdjacentHTML('afterbegin', ele);
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+}

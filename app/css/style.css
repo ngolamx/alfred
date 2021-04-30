@@ -349,3 +349,36 @@ button.dp-next, button.dp-prev {
 .notyf {
   z-index: 1000002 !important;
 }
+
+/* ORDERS */
+.table-container {
+}
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1.5rem;
+}
+.table tbody {
+  height: 500px;
+  overflow-y: auto;
+}
+.table tbody tr {
+  cursor: pointer;
+}
+.table tbody tr:hover {
+  background-color: #e5fafe;
+}
+
+.table tbody td {
+  padding: 1.3rem;
+  text-align: left;
+  border-bottom: 1px solid #f4f6ff;
+}
+
+.table thead tr th {
+  padding: 1.3rem;
+  text-align: left;
+  background-color: #f4f6ff;
+  font-family: inherit;
+  font-size: 1.6rem;
+}
