@@ -10,6 +10,7 @@
   'app/vendor/notyf.min.js',
   'app/handlers/logout.js',
   'app/handlers/calendar.js',
+  'app/handlers/notyf.js',
   'app/handlers/order.js'
   ];
   $script(lib, 'bundle');
