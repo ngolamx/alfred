@@ -13,12 +13,30 @@
     <tbody>
       {{#each orders as |order|}}
         <tr>
-          <td>{{order.client}}</td>
-          <td>{{order.category}}</td>
-          <td>{{order.amount}}</td>
-          <td>{{order.origin}}</td>
-          <td>{{order.start_date}}</td>
-          <td>{{order.end_date}}</td>
+          <td>
+            <span>{{order.client}}</span>
+            <span>Khách hàng</span>
+          </td>
+          <td>
+            <span>{{order.category}}</span>
+            <span>Tên giống</span>
+          </td>
+          <td>
+            <span>{{order.amount}}</span>
+            <span>Số lượng</span>
+          </td>
+          <td>
+            <span>{{order.origin}}</span>
+            <span>Nguồn gốc</span>
+          </td>
+          <td>
+            <span>{{order.start_date}}</span>
+            <span>Ngày cắm</span>
+          </td>
+          <td>
+            <span>{{order.end_date}}</span>
+            <span>Ngày xuất</span>
+          </td>
         </tr>
       {{/each}}
     </tbody>

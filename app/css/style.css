@@ -351,7 +351,8 @@ button.dp-next, button.dp-prev {
 }
 
 /* ORDERS */
-.table-container {
+.table thead {
+  display: none;
 }
 .table {
   border-collapse: separate;
@@ -373,6 +374,20 @@ button.dp-next, button.dp-prev {
   padding: 1.3rem;
   text-align: left;
   border-bottom: 1px solid #f4f6ff;
+}
+
+.table tbody td span {
+  display: block;
+}
+
+.table tbody td span:nth-child(1) {
+  min-height: 1.8rem;
+  font-weight: bold;
+}
+.table tbody td span:nth-child(2) {
+  margin-top: 5px;
+  color: #757575;
+  font-size: 12px;
 }
 
 .table thead tr th {
