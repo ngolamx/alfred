@@ -12,7 +12,7 @@
     </thead>
     <tbody>
       {{#each orders as |order|}}
-        <tr>
+      <tr data-id="{{order._id}}">
           <td>
             <span>{{order.client}}</span>
             <span>Khách hàng</span>

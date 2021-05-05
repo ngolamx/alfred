@@ -45,6 +45,15 @@
       });
   });
 }
+  var addEventListener = function() {
+    var elements = document.querySelectorAll('.table-orders tbody tr');
+    elements.forEach(function(ele) {
+      ele.addEventListener('click', function(event) {
+        console.log(event.target);
+        console.log(event.currentTarget);
+      });
+    });
+  }
   var getAllOrders = function() {
     var orders = reqwest({
       url: '/api/v1/orders',
@@ -61,6 +70,7 @@
           var template = Handlebars.compile(resp[1]);
           var ele = template({ orders: resp[0].data.data });
           document.querySelector('main').insertAdjacentHTML('afterbegin', ele);
+          addEventListener();
         })
         .catch(function(err) {
           console.log(err);
