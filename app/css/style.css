@@ -204,11 +204,11 @@ form fieldset {
   padding: 10px;
 }
 
-form .form-group:not(:last-child) {
+.form-group:not(:last-child) {
   margin-bottom: 1rem;
 }
 
-form .form-group input {
+.form-group input {
   display: block;
   font: 14px/18px OpenSans, Arial, sans-serif;
   border: 1px solid #d0d0d0;
@@ -218,10 +218,10 @@ form .form-group input {
   outline: none;
 }
 
-form .form-group input:focus {
+.form-group input:focus {
   border-color: var(--color-primary);
 }
-form .form-group label {
+.form-group label {
   display: block;
   margin-bottom: 5px;
 }
@@ -270,16 +270,16 @@ form .actions > *:first-child {
   display: flex;
 }
 
-form .form-group {
+.form-group {
   position: relative;
 }
 
-form .form-group .date-picker {
+.form-group .date-picker {
   width: calc(100% - 25px);
   cursor: pointer;
 }
 
-form label.icon-calendar {
+label.icon-calendar {
   position: absolute;
   top: 25px;
   right: 0;
