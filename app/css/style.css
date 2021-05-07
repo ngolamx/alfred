@@ -390,10 +390,17 @@ button.dp-next, button.dp-prev {
   font-size: 12px;
 }
 
-.table thead tr th {
-  padding: 1.3rem;
-  text-align: left;
-  background-color: #f4f6ff;
-  font-family: inherit;
-  font-size: 1.6rem;
+.item:hover {
+  background-color: #e5fafe;
+}
+
+.orders-content {
+  display: flex;
+  justify-content: space-between;
+  max-height: 90vh;
+}
+.order-detail-edit {
+  border: 1px solid #d0d0d0;
+  padding: 2rem 1rem;
+  background-color: #f0f0f0;
 }
