@@ -355,13 +355,11 @@ button.dp-next, button.dp-prev {
   display: none;
 }
 .table {
-  border-collapse: separate;
+  position: relative;
+  border-collapse: collapse;
   border-spacing: 0;
   font-size: 1.5rem;
-}
-.table tbody {
-  height: 500px;
-  overflow-y: auto;
+  width: 100%;
 }
 .table tbody tr {
   cursor: pointer;
@@ -390,14 +388,18 @@ button.dp-next, button.dp-prev {
   font-size: 12px;
 }
 
+.table-content {
+  max-height: 90vh;
+  overflow-y: auto;
+  flex: 1;
+}
+
 .item:hover {
   background-color: #e5fafe;
 }
 
 .orders-content {
   display: flex;
-  justify-content: space-between;
-  max-height: 90vh;
 }
 .order-detail-edit {
   border: 1px solid #d0d0d0;
