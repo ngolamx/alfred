@@ -2,6 +2,7 @@
 <Header/>
 <Aside/>
 <main>
+ <OrderManager/>
 </main>
 <footer>
 </footer>
@@ -10,12 +11,14 @@
 <script>
 import Header from './components/Header.vue'
 import Aside from './components/Aside.vue'
+import OrderManager from './components/OrderManager.vue'
 
 export default {
   name: 'App',
   components: {
     Header,
-    Aside
+    Aside,
+    OrderManager
   }
 }
 </script>
