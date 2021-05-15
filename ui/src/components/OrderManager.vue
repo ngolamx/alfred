@@ -46,18 +46,15 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { mapState } from 'vuex'
 
 export default {
   name: 'OrderManager',
-  data() {
-    return {
-      orders: []
-    }
-  },
-  async created() {
-  const orders = await axios('/api/v1/orders');
-  this.$data.orders = orders.data.data.data;
+  computed: mapState({
+    orders: state => state.orders.all
+  }),
+  created() {
+    this.$store.dispatch('orders/getAllOrders')
   }
 }
 </script>
