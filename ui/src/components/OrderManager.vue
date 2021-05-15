@@ -42,14 +42,44 @@
         </tbody>
       </table>
     </div>
+    <div class="order-detail-edit">
+      <div class="form-group">
+        <label for="client">Khách hàng</label>
+        <input type="text" id="client" name="client" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="category">Tên giống</label>
+        <input type="text" id="category" name="category" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="amount">Số lượng</label>
+        <input type="number" id="amount" name="amount" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="origin">Nguồn gốc</label>
+        <input type="text" id="origin" name="origin" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="start-date">Ngày cắm</label>
+        <DatePicker name="start-date"/>
+      </div>
+      <div class="form-group">
+        <label for="end-date">Ngày xuất</label>
+        <DatePicker name="end-date"/>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import DatePicker from './DatePicker'
 
 export default {
   name: 'OrderManager',
+  components: {
+    DatePicker
+  },
   computed: mapState({
     orders: state => state.orders.all
   }),

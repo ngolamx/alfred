@@ -23,7 +23,16 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import '@/assets/css/tiny-date-picker.min';
+.dp-below {
+  z-index: 100001;
+  width: 28rem !important;
+}
+
+.dp:before {
+  background: var(--color-primary) !important;
+}
 :root {
   --color-black: #212121;
   --color-text-white: #FFF;
