@@ -13,6 +13,7 @@
     "tiny-date-picker": "^3.2.8",
     "vue": "^3.0.0",
     "vue-router": "^4.0.8",
+    "vue-svg-sprite": "^2.2.0",
     "vuex": "^4.0.0"
   },
   "devDependencies": {

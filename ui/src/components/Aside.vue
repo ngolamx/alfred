@@ -1,43 +1,29 @@
 <template>
 <aside>
   <div class="user">
-    <svg>
-      <use xlink:href="@/assets/img/sprite.svg#icon-user"></use>
-    </svg>
+    <svg v-svg="'icon-user'"></svg>
     <span>User name</span>
   </div>
   <ul class="main-nav">
     <li class="main-nav-item">
-      <svg>
-        <use xlink:href="@/assets/img/sprite.svg#icon-speedometer"></use>
-      </svg>
+      <svg v-svg="'icon-speedometer'"></svg>
       <span>Tổng quan</span>
     </li>
     <li class="main-nav-item active">
-      <svg>
-        <use xlink:href="@/assets/img/sprite.svg#icon-file-tray"></use>
-      </svg>
+      <svg v-svg="'icon-file-tray'"></svg>
       <span>Đơn Hàng</span>
-      <svg class="icon-add" id="add-order">
-        <use xlink:href="@/assets/img/sprite.svg#icon-add"></use>
-      </svg>
+      <svg class="icon-add" v-svg="'icon-add'"></svg>
     </li>
     <li class="main-nav-item">
-      <svg>
-        <use xlink:href="@/assets/img/sprite.svg#icon-people"></use>
-      </svg>
+      <svg v-svg="'icon-people'"></svg>
       <span>Khách hàng</span>
     </li>
     <li class="main-nav-item">
-      <svg>
-        <use xlink:href="@/assets/img/sprite.svg#icon-body"></use>
-      </svg>
+      <svg v-svg="'icon-body'"></svg>
       <span>Nhân viên</span>
     </li>
     <li class="main-nav-item">
-      <svg>
-        <use xlink:href="@/assets/img/sprite.svg#icon-cash"></use>
-      </svg>
+      <svg v-svg="'icon-cash'"></svg>
       <span>Công nợ</span>
     </li>
   </ul>
@@ -50,7 +36,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 aside {
   grid-row: 2/-1;
@@ -96,14 +81,14 @@ aside .main-nav-item {
   width: 100%;
 }
 
-aside .main-nav-item .icon-add {
+.icon-add {
   margin-left: 4rem;
   width: 3rem;
   height: 3rem;
   cursor: pointer;
 }
 
-aside .main-nav-item .icon-add:hover {
+.icon-add:hover {
   color: var(--color-alert);
 }
 
@@ -114,7 +99,7 @@ aside .main-nav-item:not(:last-child)::after {
   content: "";
   display: inline-block;
   height: 1px;
-  width: 20rem;
+  width: 60%;
   background-color: var(--color-primary);
 }
 

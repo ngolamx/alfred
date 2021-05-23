@@ -13,60 +13,90 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="order in orders" v-bind:key="order.id">
-              <td>
-                <span>{{order.client}}</span>
-                <span>Khách hàng</span>
-              </td>
-              <td>
-                <span>{{order.category}}</span>
-                <span>Tên giống</span>
-              </td>
-              <td>
-                <span>{{order.amount}}</span>
-                <span>Số lượng</span>
-              </td>
-              <td>
-                <span>{{order.origin}}</span>
-                <span>Nguồn gốc</span>
-              </td>
-              <td>
-                <span>{{order.start_date}}</span>
-                <span>Ngày cắm</span>
-              </td>
-              <td>
-                <span>{{order.end_date}}</span>
-                <span>Ngày xuất</span>
-              </td>
-            </tr>
+          <template v-for="order in orders" :key="order._id">
+            <tr @click="selectOrder(order)" :class="(selectedOrder && order._id === selectedOrder._id) ? 'selected' : ''">
+                <td>
+                  <span>{{order.client}}</span>
+                  <span>Khách hàng</span>
+                </td>
+                <td>
+                  <span>{{order.category}}</span>
+                  <span>Tên giống</span>
+                </td>
+                <td>
+                  <span>{{order.amount}}</span>
+                  <span>Số lượng</span>
+                </td>
+                <td>
+                  <span>{{order.origin}}</span>
+                  <span>Nguồn gốc</span>
+                </td>
+                <td>
+                  <span>{{order.start_date}}</span>
+                  <span>Ngày cắm</span>
+                </td>
+                <td>
+                  <span>{{order.end_date}}</span>
+                  <span>Ngày xuất</span>
+                </td>
+              </tr>
+          </template>
         </tbody>
       </table>
     </div>
-    <div class="order-detail-edit">
-      <div class="form-group">
-        <label for="client">Khách hàng</label>
-        <input type="text" id="client" name="client" autocomplete="off">
+    <div class="order-detail-edit" v-if="selectedOrder && shownPanel">
+      <div class="detail-body">
+        <div class="form-group">
+          <label for="client">Khách hàng</label>
+          <input type="text" id="client" name="client" autocomplete="off"
+            @keyup.enter="updateOrder($event.target.name, $event.target.value)"
+            :value="selectedOrder.client">
+        </div>
+        <div class="form-group">
+          <label for="category">Tên giống</label>
+          <input type="text" id="category" name="category" autocomplete="off"
+            @focusout="updateOrder($event.target.name, $event.target.value)"
+            @keyup.enter="updateOrder($event.target.name, $event.target.value)"
+            :value="selectedOrder.category">
+        </div>
+        <div class="form-group">
+          <label for="amount">Số lượng</label>
+          <input type="number" id="amount" name="amount" autocomplete="off"
+            @focusout="updateOrder($event.target.name, $event.target.value)"
+            @keyup.enter="updateOrder($event.target.name, $event.target.value)"
+            :value="selectedOrder.amount">
+        </div>
+        <div class="form-group">
+          <label for="origin">Nguồn gốc</label>
+          <input type="text" id="origin" name="origin" autocomplete="off"
+            @focusout="updateOrder($event.target.name, $event.target.value)"
+            @keyup.enter="updateOrder($event.target.name, $event.target.value)"
+            :value="selectedOrder.origin">
+        </div>
+        <div class="form-group">
+          <label for="start-date">Ngày cắm</label>
+          <DatePicker name="start_date"
+            @onchange="updateOrder($event.name, $event.value)"
+            :value="selectedOrder.start_date"/>
+        </div>
+        <div class="form-group">
+          <label for="end-date">Ngày xuất</label>
+          <DatePicker name="end_date"
+            @onchange="updateOrder($event.name, $event.value)"
+            :value="selectedOrder.end_date"/>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="category">Tên giống</label>
-        <input type="text" id="category" name="category" autocomplete="off">
-      </div>
-      <div class="form-group">
-        <label for="amount">Số lượng</label>
-        <input type="number" id="amount" name="amount" autocomplete="off">
-      </div>
-      <div class="form-group">
-        <label for="origin">Nguồn gốc</label>
-        <input type="text" id="origin" name="origin" autocomplete="off">
-      </div>
-      <div class="form-group">
-        <label for="start-date">Ngày cắm</label>
-        <DatePicker name="start-date"/>
-      </div>
-      <div class="form-group">
-        <label for="end-date">Ngày xuất</label>
-        <DatePicker name="end-date"/>
-      </div>
+      <footer>
+        <div class="close-panel" @click="closePanel">
+            <svg v-svg="'icon-forward'"></svg>
+        </div>
+        <div class="created-date">
+          Ngày tạo: {{formatDate(selectedOrder.createdAt)}}
+        </div>
+        <div class="delete-record">
+            <svg v-svg="'icon-delete'"></svg>
+        </div>
+      </footer>
     </div>
   </div>
 </template>
@@ -77,19 +107,49 @@ import DatePicker from './DatePicker'
 
 export default {
   name: 'OrderManager',
+  data: function() {
+    return {
+      selectedOrder: null,
+      shownPanel: false
+    }
+  },
   components: {
     DatePicker
   },
-  computed: mapState({
+  computed: {
+    ...mapState({
     orders: state => state.orders.all
-  }),
+    })
+  },
   created() {
     this.$store.dispatch('orders/getAllOrders')
+  },
+  methods: {
+    selectOrder(order) {
+      this.selectedOrder = order;
+      this.shownPanel = true;
+    },
+    closePanel() {
+      this.shownPanel = false;
+    },
+    formatDate(dateStr) {
+      const date = new Date(dateStr);
+      var options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' };
+      return date.toLocaleDateString('vi-vi', options);
+    },
+    updateOrder(key, value) {
+      this.$store.dispatch({
+        type: 'orders/updateOrder',
+        id: this.selectedOrder._id,
+        key,
+        value
+      });
+    }
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 form {
   background-color: #f0f0f0;
   padding-bottom: 10px;
@@ -196,7 +256,7 @@ label.icon-calendar {
 label.icon-calendar svg {
   width: 20px;
   height: 20px;
-  color: currentColor;
+  color: #666;
 }
 /* ORDERS */
 .table thead {
@@ -237,7 +297,7 @@ label.icon-calendar svg {
 }
 
 .table-content {
-  max-height: 90vh;
+  max-height: calc(100vh - 4rem);
   overflow-y: auto;
   flex: 1;
 }
@@ -253,6 +313,37 @@ label.icon-calendar svg {
   border: 1px solid #d0d0d0;
   padding: 2rem 1rem;
   background-color: #f0f0f0;
-}
+  max-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
+  footer {
+    display: flex;
+    justify-content: space-between;
+    .close-panel,.delete-record {
+      width: 3rem;
+      height: 3rem;
+      cursor: pointer;
+      &:hover {
+        background-color: #d0d0d0;
+      }
+    }
+    .created-date {
+      margin-top: .5rem;
+      font-size: 1.3rem;
+      color: #777E78;
+    }
+    svg {
+      margin-left: .5rem;
+      margin-top: .5rem;
+      width: 2rem;
+      height: 2rem;
+      color: #666;
+    }
+  }
+}
+.selected {
+  background-color: #e3eef1;
+}
 </style>

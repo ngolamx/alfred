@@ -27,7 +27,8 @@ export default {
 @import '@/assets/css/tiny-date-picker.min';
 .dp-below {
   z-index: 100001;
-  width: 28rem !important;
+  width: 26rem !important;
+  height: 30rem !important;
 }
 
 .dp:before {
@@ -56,13 +57,16 @@ html {
 body {
   box-sizing: border-box;
   font: 1.6rem/1.8rem OpenSans, Arial, sans-serif;
+  max-width: 100vw;
 }
 
 #app {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(min-content, 25rem) 1fr;
   grid-template-rows: min-content auto minmax(min-content, 5rem);
   height: 100vh;
+  max-width: 100vw;
   color: var(--color-black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

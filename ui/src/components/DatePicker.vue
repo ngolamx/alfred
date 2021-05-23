@@ -1,5 +1,7 @@
 <template>
-  <input type="text" :id="name" :name="name" readonly="readonly" class="date-picker" ref="input" autocomplete="off">
+  <input type="text" :id="name" :name="name" readonly="readonly"
+    :value="value"
+    class="date-picker" ref="input" autocomplete="off">
   <label :for="name" class="icon-calendar">
     <svg class>
       <use xlink:href="@/assets/img/sprite.svg#icon-calendar"></use>
@@ -10,12 +12,15 @@
 import TinyDatePicker from 'tiny-date-picker'
 export default {
   name: 'DatePicker',
+  emits: ['onchange'],
   props: {
-    name: String
+    value: String,
+    name: String,
   },
   mounted() {
     const ele = this.$refs.input;
     TinyDatePicker(ele, {
+        appendTo: document.querySelector('#app'),
         mode: 'dp-below',
         dayOffset: 1,
         lang: {
@@ -50,6 +55,12 @@ export default {
         }
         return isNaN(date) ? new Date() : date;
       },
+    }).on('select', (_, dp) => {
+      const options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' };
+      this.$emit('onchange', {
+        name: this.name,
+        value: dp.state.selectedDate.toLocaleDateString('vi-vi', options)
+      });
     });
   }
 }
@@ -83,7 +94,7 @@ label.icon-calendar {
 label.icon-calendar svg {
   width: 20px;
   height: 20px;
-  color: currentColor;
+  color: #666;
 }
 
 </style>
