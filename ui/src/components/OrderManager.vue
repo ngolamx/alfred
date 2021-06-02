@@ -1,4 +1,9 @@
 <template>
+<Dialog ref="dialog" @on-submit="deleteOrder">
+  <div class="dialog-body">
+    <p>Bạn có muốn xóa đơn hàng?</p>
+  </div>
+</Dialog>
   <div class="orders-content">
     <div class="table-content">
       <table class="table table-orders">
@@ -93,7 +98,7 @@
         <div class="created-date">
           Ngày tạo: {{formatDate(selectedOrder.createdAt)}}
         </div>
-        <div class="delete-record">
+        <div class="delete-record" @click="$refs.dialog.openDialog">
             <svg v-svg="'icon-delete'"></svg>
         </div>
       </footer>
@@ -104,6 +109,7 @@
 <script>
 import { mapState } from 'vuex'
 import DatePicker from './DatePicker'
+import Dialog from './Dialog'
 
 export default {
   name: 'OrderManager',
@@ -114,7 +120,8 @@ export default {
     }
   },
   components: {
-    DatePicker
+    DatePicker,
+    Dialog
   },
   computed: {
     ...mapState({
@@ -131,6 +138,12 @@ export default {
     },
     closePanel() {
       this.shownPanel = false;
+    },
+    deleteOrder() {
+      this.$store.dispatch({
+        type: 'orders/deleteOrder',
+        id: this.selectedOrder._id
+      });
     },
     formatDate(dateStr) {
       const date = new Date(dateStr);

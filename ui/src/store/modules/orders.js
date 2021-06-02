@@ -17,6 +17,10 @@ const actions = {
       [payload.key]: payload.value
     });
     commit('updateOrder', order.data.data.data)
+  },
+  async deleteOrder ({ commit }, payload) {
+    await axios.delete(`/api/v1/orders/${payload.id}`);
+    commit('deleteOrder', payload.id)
   }
 }
 
@@ -28,6 +32,10 @@ const mutations = {
   updateOrder(state, data) {
     const order = state.all.find(item => item._id === data._id)
     Object.assign(order, data);
+  },
+  deleteOrder(state, data) {
+    const index = state.all.findIndex(item => item._id === data._id)
+    state.all.splice(index, 1);
   }
 }
 
