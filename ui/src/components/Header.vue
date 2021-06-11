@@ -5,7 +5,7 @@
   </div>
   <ul class="nav">
     <li class="nav-item">
-      <a class="link logout" href="#">
+      <a class="link logout" href="#" @click.prevent="$refs.dialog.openDialog">
         <span>Log out</span>
         <svg class="icon-logout">
           <use xlink:href="@/assets/img/sprite.svg#icon-logout"></use>
@@ -14,11 +14,41 @@
     </li>
   </ul>
 </header>
+<Dialog ref="dialog" @on-submit="logOut">
+  <div class="dialog-body">
+    <p>Bạn có muốn thoát khỏi ứng dụng?</p>
+  </div>
+</Dialog>
 </template>
 
 <script>
+import Dialog from './Dialog'
+import axios from 'axios';
+import showAlert from '../lib/alerts';
+
 export default {
   name: 'Header',
+  components: {
+    Dialog
+  },
+  methods: {
+    async logOut() {
+      try {
+        const res = await axios({
+          method: 'GET',
+          url: '/api/v1/users/logout'
+        });
+        if (res.data.status === 'success') {
+          sessionStorage.loggedIn = false;
+          location.reload(true);
+        }
+      } catch (err) {
+        console.log(err.response);
+        showAlert('error', 'Error logging out! Try again.');
+      }
+
+    }
+  }
 }
 </script>
 

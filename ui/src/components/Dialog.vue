@@ -11,7 +11,7 @@
           </div>
           <slot></slot>
           <div class="dialog-buttons">
-            <input class="dialog-button" type="button" value="OK" @click="closeDialog">
+            <input class="dialog-button dialog-button--green" type="button" value="OK" @click="closeDialog">
             <input class="dialog-button" type="button" value="Hủy" @click="show = false">
           </div>
         </div>
@@ -118,6 +118,11 @@ export default {
       cursor: pointer;
       border-radius: 2px;
       box-shadow: 0 2px 3px rgba(0, 0, 0, 0.23);
+
+      &--green {
+        background-color: var(--color-primary);
+        color: var(--color-text-white);
+      }
     }
   }
 }

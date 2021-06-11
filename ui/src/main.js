@@ -16,7 +16,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
- if (to.name !== 'Login' && !sessionStorage.loggedIn) next({ name: 'Login' })
+ if (to.name !== 'Login' && !(sessionStorage.loggedIn === 'true')) next({ name: 'Login' })
  else next()
 })
 
