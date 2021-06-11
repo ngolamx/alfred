@@ -4,7 +4,7 @@
     <div class="login-form__heading">
       <img src="img/alfred-logo-trans.png" alt="LOGO" class="login-form__logo">
     </div>
-    <form class="form form--login" action="">
+    <form class="form form--login" @submit.prevent="onLogin">
       <div class="form__group">
         <input id="email" class="form__input" type="email" placeholder="E-mail" required="true">
       </div>
@@ -22,37 +22,40 @@
 </template>
 
 <script>
+import axios from 'axios';
+import showAlert from '../lib/alerts';
+
 export default {
   name: 'Login',
+  methods: {
+	async onLogin(evt) {
+      const { email, password } = evt.target
+      try {
+            const res = await axios({
+              method: 'POST',
+              url: '/api/v1/users/login',
+              data: {
+                email: email.value,
+                password: password.value
+              }
+            });
+
+            if (res.data.status === 'success') {
+              sessionStorage.loggedIn = true;
+              showAlert('success', 'Logged in successfully!');
+              window.setTimeout(() => {
+                this.$router.push('/')
+              }, 1500);
+            }
+        } catch (err) {
+          showAlert('error', err.response.data.message);
+        }
+	}
+  }
 }
 </script>
 
 <style scoped lang="scss">
-// COLORS VAR
-$primary-color-dark:   #388E3C;
-$primary-color:        #4CAF50;
-$primary-color-light:  #C8E6C9;
-$primary-color-text:   #FFFFFF;
-$accent-color:         #CDDC39;
-$primary-text-color:   #212121;
-$secondary-text-color: #757575;
-$divider-color:        #BDBDBD;
-
-// INDICATOR COLOR
-$indicator-color-green: #27ae60;
-$indicator-color-red: #e74c3c;
-$indicator-color-yellow: #f1c40f;
-
-
-// RESPONSIVE BREAKPOINTS
-$bp-largest: 75em;   // 1200px
-$bp-large: 62.5em;   // 1000px
-$bp-medium: 50em;    // 800px;
-$bp-small: 37.5em;    // 600px;
-
-// FONT
-$default-font-size: 1.6rem;
-
 .main {
   position: relative;
 }
@@ -107,5 +110,14 @@ $default-font-size: 1.6rem;
   & > *:last-child {
     margin-top: 8rem;
   }
+}
+.landing {
+  height: 100vh;
+  background-image: linear-gradient(
+  to right bottom,
+    rgba($primary-color, .7),
+    rgba($primary-color-dark, .7)),
+  url(../assets/img/dalat.jpg);
+  background-size: cover;
 }
 </style>

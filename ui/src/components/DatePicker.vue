@@ -86,7 +86,7 @@ input:focus {
 }
 label.icon-calendar {
   position: absolute;
-  top: 25px;
+  top: 34px;
   right: 0;
   cursor: pointer;
 }
