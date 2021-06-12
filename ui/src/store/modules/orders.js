@@ -12,6 +12,10 @@ const actions = {
     const orders = await axios('/api/v1/orders')
     commit('setOrders', orders.data.data.data)
   },
+  async createOrder ({ commit }, payload) {
+    const orders = await axios.post('/api/v1/orders', payload.data)
+    commit('pushOrder', orders.data.data.data)
+  },
   async updateOrder ({ commit }, payload) {
     const order = await axios.patch(`/api/v1/orders/${payload.id}`, {
       [payload.key]: payload.value
@@ -33,8 +37,11 @@ const mutations = {
     const order = state.all.find(item => item._id === data._id)
     Object.assign(order, data);
   },
-  deleteOrder(state, data) {
-    const index = state.all.findIndex(item => item._id === data._id)
+  pushOrder(state, data) {
+    state.all.unshift(data)
+  },
+  deleteOrder(state, id) {
+    const index = state.all.findIndex(item => item._id === id)
     state.all.splice(index, 1);
   }
 }

@@ -1,7 +1,6 @@
 <template>
   <input type="text" :id="name" :name="name" readonly="readonly"
-    :value="value"
-    class="date-picker" ref="input" autocomplete="off">
+    :value="modelValue ? modelValue : value" class="date-picker" ref="input" autocomplete="off" @change="$emit('update:modelValue', $event.target.value)">
   <label :for="name" class="icon-calendar">
     <svg class>
       <use xlink:href="@/assets/img/sprite.svg#icon-calendar"></use>
@@ -12,10 +11,11 @@
 import TinyDatePicker from 'tiny-date-picker'
 export default {
   name: 'DatePicker',
-  emits: ['onchange'],
+  emits: ['onchange', 'update:modelValue'],
   props: {
     value: String,
     name: String,
+    modelValue: String,
   },
   mounted() {
     const ele = this.$refs.input;
