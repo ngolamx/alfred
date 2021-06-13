@@ -2,7 +2,7 @@
 <main class="main landing">
   <div class="login-form">
     <div class="login-form__heading">
-      <img src="img/alfred-logo-trans.png" alt="LOGO" class="login-form__logo">
+      <img src="@/assets/img/alfred-logo-trans.png" alt="LOGO" class="login-form__logo">
     </div>
     <form class="form form--login" @submit.prevent="onLogin">
       <div class="form__group">
@@ -41,7 +41,7 @@ export default {
             });
 
             if (res.data.status === 'success') {
-              sessionStorage.loggedIn = true;
+              localStorage.loggedIn = true;
               showAlert('success', 'Logged in successfully!');
               window.setTimeout(() => {
                 this.$router.push('/')

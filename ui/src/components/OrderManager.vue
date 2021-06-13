@@ -110,6 +110,7 @@
 import { mapState } from 'vuex'
 import DatePicker from './DatePicker'
 import Dialog from './Dialog'
+import showAlert from '../lib/alerts';
 
 export default {
   name: 'OrderManager',
@@ -139,11 +140,17 @@ export default {
     closePanel() {
       this.shownPanel = false;
     },
-    deleteOrder() {
-      this.$store.dispatch({
-        type: 'orders/deleteOrder',
-        id: this.selectedOrder._id
-      });
+    async deleteOrder() {
+      try {
+        await this.$store.dispatch({
+          type: 'orders/deleteOrder',
+          id: this.selectedOrder._id
+        });
+        showAlert('success', 'Đã xóa');
+        this.selectedOrder = this.orders[0];
+      } catch (error) {
+        showAlert('success', error);
+      }
     },
     formatDate(dateStr) {
       const date = new Date(dateStr);
@@ -330,6 +337,7 @@ label.icon-calendar svg {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: calc(100vh - 4rem);
 
   footer {
     display: flex;

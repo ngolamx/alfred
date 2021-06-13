@@ -39,7 +39,7 @@ export default {
           url: '/api/v1/users/logout'
         });
         if (res.data.status === 'success') {
-          sessionStorage.loggedIn = false;
+          localStorage.loggedIn = false;
           location.reload(true);
         }
       } catch (err) {
