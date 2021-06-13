@@ -48,25 +48,35 @@
   </div>
   <ul class="main-nav">
     <li class="main-nav-item">
-      <svg v-svg="'icon-speedometer'"></svg>
-      <span>Tổng quan</span>
-    </li>
-    <li class="main-nav-item active">
-      <svg v-svg="'icon-file-tray'"></svg>
-      <span>Đơn Hàng</span>
-      <svg class="icon-add" v-svg="'icon-add'" @click="$refs.modal.openModal"></svg>
+      <router-link to="/general">
+        <svg v-svg="'icon-speedometer'"></svg>
+        <span>Tổng quan</span>
+      </router-link>
     </li>
     <li class="main-nav-item">
-      <svg v-svg="'icon-people'"></svg>
-      <span>Khách hàng</span>
+      <router-link to="/orders">
+        <svg v-svg="'icon-file-tray'"></svg>
+        <span>Đơn Hàng</span>
+        <svg class="icon-add" v-svg="'icon-add'" @click="$refs.modal.openModal"></svg>
+      </router-link>
     </li>
     <li class="main-nav-item">
-      <svg v-svg="'icon-body'"></svg>
-      <span>Nhân viên</span>
+      <router-link to="/clients">
+        <svg v-svg="'icon-people'"></svg>
+        <span>Khách hàng</span>
+      </router-link>
     </li>
     <li class="main-nav-item">
-      <svg v-svg="'icon-cash'"></svg>
-      <span>Công nợ</span>
+      <router-link to="/people">
+        <svg v-svg="'icon-body'"></svg>
+        <span>Nhân viên</span>
+      </router-link>
+    </li>
+    <li class="main-nav-item">
+      <router-link to="cash">
+        <svg v-svg="'icon-cash'"></svg>
+        <span>Công nợ</span>
+      </router-link>
     </li>
   </ul>
 </aside>
@@ -111,7 +121,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 aside {
   grid-row: 2/-1;
   display: flex;
@@ -150,8 +160,6 @@ aside .main-nav svg {
 aside .main-nav-item {
   display: flex;
   align-items: center;
-  padding: 1rem 0;
-  padding-left: 2rem;
   position: relative;
   width: 100%;
 }
@@ -196,6 +204,26 @@ aside .main-nav-item:not(.active):hover {
   cursor: pointer;
   background-color: #DCEDC8;
   width: 100%;
+}
+
+.main-nav-item {
+  a,
+  a:link,
+  a:visited {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 1rem 0;
+    padding-left: 2rem;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .router-link-active {
+    background-color: var(--color-text-white);
+    width: 100%;
+  }
 }
 
 /* FORM */

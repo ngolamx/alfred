@@ -2,12 +2,20 @@ import { createApp } from 'vue/dist/vue.esm-bundler'
 import store from './store'
 import { createRouter, createWebHashHistory } from 'vue-router';
 import App from './App.vue'
+import ClientManager from './components/ClientManager.vue'
+import OrderManager from './components/OrderManager.vue'
 import Login from './components/Login.vue';
 import { svgSpriteDirectivePlugin } from 'vue-svg-sprite'
 
 const routes = [
-  { path: '/', name: 'App', component: App },
-  { path: '/login', name: 'Login', component: Login }
+  { path: '/', name: 'App', component: App,
+    children: [
+      { path: '', component: OrderManager },
+      { path: '/orders', name: 'Orders', component: OrderManager },
+      { path: '/clients', name: 'Client', component: ClientManager }
+    ]
+  },
+  { path: '/login', name: 'Login', component: Login },
 ]
 
 const router = createRouter({
