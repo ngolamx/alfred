@@ -46,8 +46,3 @@ process.on('SIGTERM', () => {
     console.log('💥 Process terminated!');
   });
 });
-
-// Livereload server
-if (process.env.NODE_ENV === 'development') {
-  app.locals.dev_mode = true;
-}
