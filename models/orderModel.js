@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
 const orderSchema = new mongoose.Schema({
-  client: {
-    type: String,
-    required: [true, 'A client must have a name']
-  },
   category: {
     type: String
   },
@@ -22,7 +18,17 @@ const orderSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now()
-  }
+  },
+  client: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: [true, 'Review must belong to a user']
+  },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Client',
+    required: [true, 'Review must belong to a user']
+  },
 });
 
 const Order = mongoose.model('Order', orderSchema);
