@@ -19,6 +19,7 @@ module.exports = {
           @import "@/assets/css/functions.scss";
           @import "@/assets/css/components/button.scss";
           @import "@/assets/css/components/alert.scss";
+          @import "@/assets/css/components/icons.scss";
         `
       }
     }

@@ -35,4 +35,5 @@ app.use(router);
 app.use(svgSpriteDirectivePlugin, {
   url: require('./assets/img/sprite.svg')
 } /* options */)
+
 app.mount('#app')

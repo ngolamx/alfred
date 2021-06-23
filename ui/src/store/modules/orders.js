@@ -1,4 +1,3 @@
-import axios from 'axios'
 const state = () => ({
   all: []
 })
@@ -9,21 +8,25 @@ const getters = {}
 // actions
 const actions = {
   async getAllOrders ({ commit }) {
-    const orders = await axios('/api/v1/orders')
-    commit('setOrders', orders.data.data.data)
+    const orders = await this.$http('/orders')
+    commit('setOrders', orders)
   },
   async createOrder ({ commit }, payload) {
-    const orders = await axios.post('/api/v1/orders', payload.data)
-    commit('pushOrder', orders.data.data.data)
+    try {
+      const orders = await this.$http.post('/orders', payload.data)
+      commit('pushOrder', orders)
+    } catch(err) {
+      console.log(err)
+    }
   },
   async updateOrder ({ commit }, payload) {
-    const order = await axios.patch(`/api/v1/orders/${payload.id}`, {
+    const order = await this.$http.patch(`/orders/${payload.id}`, {
       [payload.key]: payload.value
     });
-    commit('updateOrder', order.data.data.data)
+    commit('updateOrder', order)
   },
   async deleteOrder ({ commit }, payload) {
-    await axios.delete(`/api/v1/orders/${payload.id}`);
+    await this.$http.delete(`/orders/${payload.id}`);
     commit('deleteOrder', payload.id)
   }
 }

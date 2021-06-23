@@ -12,7 +12,7 @@ const clientSchema = new mongoose.Schema({
   address: {
     type: String,
   }
-};
+});
 
 const Client = mongoose.model('Client', clientSchema);
 
