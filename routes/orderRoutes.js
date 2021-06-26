@@ -5,7 +5,10 @@ const authController = require('./../controllers/authController');
 const router = express.Router();
 router
   .route('/')
-  .get(orderController.getAllOrders)
+  .get(
+    authController.protect,
+    orderController.getAllOrders
+  )
   .post(
     authController.protect,
     orderController.createOrder
@@ -13,8 +16,12 @@ router
 
 router
   .route('/:id')
-  .get(orderController.getOrder)
+  .get(
+    authController.protect,
+    orderController.getOrder
+  )
   .patch(
+    authController.protect,
     orderController.updateOrder
   )
   .delete(

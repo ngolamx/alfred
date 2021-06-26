@@ -12,12 +12,9 @@ const actions = {
     commit('setOrders', orders)
   },
   async createOrder ({ commit }, payload) {
-    try {
-      const orders = await this.$http.post('/orders', payload.data)
-      commit('pushOrder', orders)
-    } catch(err) {
-      console.log(err)
-    }
+    const order = await this.$http.post('/orders', payload.data)
+    commit('pushOrder', order)
+    return order;
   },
   async updateOrder ({ commit }, payload) {
     const order = await this.$http.patch(`/orders/${payload.id}`, {

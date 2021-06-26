@@ -12,8 +12,9 @@ const actions = {
     commit('setClients', clients)
   },
   async createClient ({ commit }, payload) {
-    const clients = await this.$http.post('/clients', payload.data)
-    commit('pushClient', clients)
+    const client = await this.$http.post('/clients', payload.data)
+    commit('pushClient', client)
+    return client
   },
   async updateClient ({ commit }, payload) {
     const order = await this.$http.patch(`/clients/${payload.id}`, {

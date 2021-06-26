@@ -13,15 +13,17 @@ const instance = axios.create({
 instance.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
-    return response.data.data.data;
+    if (response.data)
+      return response.data.data.data;
+    return response;
   }, function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    localStorage.loggedIn = false;
     if (error.response.status === 401) { // NOT logged in
+      localStorage.loggedIn = false;
       location.reload(true);
     }
-    return Promise.reject(error);
+    return Promise.reject(error.response.data);
 });
 
 Vuex.Store.prototype.$http = instance;

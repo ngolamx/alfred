@@ -4,8 +4,8 @@
     <p>Bạn có muốn xóa đơn hàng?</p>
   </div>
 </Dialog>
-  <div class="orders-content">
-    <div class="table-content">
+  <div class="container">
+    <div class="main">
       <table class="table table-orders">
         <thead>
           <tr>
@@ -49,7 +49,7 @@
         </tbody>
       </table>
     </div>
-    <div class="order-detail-edit" v-if="selectedOrder && shownPanel">
+    <div class="side" v-if="selectedOrder && shownPanel">
       <div class="detail-body">
         <div class="form-group">
           <label for="client">Khách hàng</label>
@@ -170,114 +170,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-form {
-  background-color: #f0f0f0;
-  padding-bottom: 10px;
-  position: relative;
-}
-form .heading {
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: var(--color-alert);
-  line-height: 1.5;
-  padding: 15px 20px 10px;
-}
-
-form legend {
-  color: var(--color-alert);
-}
-
-form fieldset {
-  margin: 10px 20px;
-  padding: 10px;
-}
-
-.form-group:not(:last-child) {
-  margin-bottom: 1rem;
-}
-
-.form-group input {
-  display: block;
-  font: 14px/18px OpenSans, Arial, sans-serif;
-  border: 1px solid #d0d0d0;
-  border-radius: 0;
-  background: #fff;
-  padding: 3px 5px;
-  outline: none;
-}
-
-.form-group input:focus {
-  border-color: var(--color-primary);
-}
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-form .btn {
-  font-family: inherit;
-  font-size: 1.4rem;
-  background-color: var(--color-primary);
-  width: 10rem;
-  height: 30px;
-  padding: 0 20px;
-  border-radius: 7px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.23);
-  text-align: center;
-  outline: none;
-  border: none;
-  color: var(--color-text-white);
-  cursor: pointer;
-}
-
-form .btn.btn-cancel {
-  line-height: 2;
-  background: #fdfdfd;
-  color: var(--color-black);
-}
-
-form .btn.btn-cancel:hover {
-  background: #e0e0e0;
-}
-
-form .actions {
-  margin: 10px 20px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-form .actions > *:first-child {
-  margin-right: 10px;
-}
-
-.add-order-form {
-  border-radius: 5px;
-}
-
-.add-order-form .data-set {
-  display: flex;
-}
-
-.form-group {
-  position: relative;
-}
-
-.form-group .date-picker {
-  width: calc(100% - 25px);
-  cursor: pointer;
-}
-
-label.icon-calendar {
-  position: absolute;
-  top: 25px;
-  right: 0;
-}
-
-label.icon-calendar svg {
-  width: 20px;
-  height: 20px;
-  color: #666;
-}
 /* ORDERS */
 .table thead {
   display: none;
@@ -316,7 +208,7 @@ label.icon-calendar svg {
   font-size: 12px;
 }
 
-.table-content {
+.main {
   max-height: calc(100vh - 4rem);
   overflow-y: auto;
   flex: 1;
@@ -326,10 +218,10 @@ label.icon-calendar svg {
   background-color: #e5fafe;
 }
 
-.orders-content {
+.container {
   display: flex;
 }
-.order-detail-edit {
+.side {
   border: 1px solid #d0d0d0;
   padding: 2rem 1rem;
   background-color: #f0f0f0;

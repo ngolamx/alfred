@@ -1,0 +1,49 @@
+.main {
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.item:hover {
+  background-color: #e5fafe;
+}
+
+.container {
+  display: flex;
+}
+
+.side {
+  border: 1px solid #d0d0d0;
+  padding: 2rem 1rem;
+  background-color: #f0f0f0;
+  max-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 4rem);
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    .close-panel,.delete-record {
+      width: 3rem;
+      height: 3rem;
+      cursor: pointer;
+      &:hover {
+        background-color: #d0d0d0;
+      }
+    }
+    .created-date {
+      margin-top: .5rem;
+      font-size: 1.3rem;
+      color: #777E78;
+    }
+    svg {
+      margin-left: .5rem;
+      margin-top: .5rem;
+      width: 2rem;
+      height: 2rem;
+      color: #666;
+    }
+  }
+}

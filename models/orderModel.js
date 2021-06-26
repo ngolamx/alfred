@@ -22,13 +22,8 @@ const orderSchema = new mongoose.Schema({
   client: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
-    required: [true, 'Review must belong to a user']
-  },
-  user: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Client',
-    required: [true, 'Review must belong to a user']
-  },
+    required: [true, 'Nhập tên khách hàng']
+  }
 });
 
 const Order = mongoose.model('Order', orderSchema);

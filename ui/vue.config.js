@@ -17,6 +17,8 @@ module.exports = {
           @import "@/assets/css/utilities.scss";
           @import "@/assets/css/typography.scss";
           @import "@/assets/css/functions.scss";
+          @import "@/assets/css/layout.scss";
+          @import "@/assets/css/components/form.scss";
           @import "@/assets/css/components/button.scss";
           @import "@/assets/css/components/alert.scss";
           @import "@/assets/css/components/icons.scss";

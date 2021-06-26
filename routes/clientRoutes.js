@@ -5,7 +5,10 @@ const authController = require('./../controllers/authController');
 const router = express.Router();
 router
   .route('/')
-  .get(clientController.getAllClients)
+  .get(
+    authController.protect,
+    clientController.getAllClients
+  )
   .post(
     authController.protect,
     clientController.createClient
@@ -13,8 +16,12 @@ router
 
 router
   .route('/:id')
-  .get(clientController.getClient)
+  .get(
+    authController.protect,
+    clientController.getClient
+  )
   .patch(
+    authController.protect,
     clientController.updateClient
   )
   .delete(

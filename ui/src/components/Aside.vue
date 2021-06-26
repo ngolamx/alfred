@@ -113,8 +113,8 @@ export default {
         });
         showAlert('success', 'Tạo đơn hàng thành công');
         this.$refs.modal.closeModal();
-      } catch(err) {
-        showAlert('error', err);
+      } catch(error) {
+        showAlert('error', error.message);
       }
     }
   }

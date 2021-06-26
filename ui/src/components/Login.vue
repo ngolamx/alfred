@@ -61,6 +61,7 @@ export default {
 }
 .login-form {
   .form {
+    background-color: transparent;
     &__input {
       width: 100%;
       font-size: 1.8rem;
