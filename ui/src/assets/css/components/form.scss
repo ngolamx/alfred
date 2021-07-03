@@ -106,3 +106,44 @@ label.icon-calendar svg {
   height: 20px;
   color: #666;
 }
+
+
+
+.v-select {
+  .vs__open-indicator {
+    transform: scale(.8);
+  }
+  background-color: #fff;
+  border: 1px solid #d0d0d0;
+  padding: 0 5px 0 0;
+  margin: 0;
+  height: 26px;
+  ul {
+    top: calc(100% + 5px);
+  }
+  div {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border-radius: unset;
+    border: none;
+  }
+  input {
+    padding: 4px !important;
+    margin: 0 !important;
+    height: 100%;
+    margin-bottom: 5px;
+    border-radius: unset;
+    border: none;
+    &:focus {
+      border: none;
+    }
+  }
+}
+
+.vs--open {
+  border: 1px solid var(--color-primary);
+  .vs__open-indicator {
+    transform: rotate(180deg) scale(.8);
+  }
+}

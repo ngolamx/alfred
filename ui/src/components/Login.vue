@@ -58,6 +58,7 @@ export default {
 <style scoped lang="scss">
 .main {
   position: relative;
+  max-height: 100vh;
 }
 .login-form {
   .form {

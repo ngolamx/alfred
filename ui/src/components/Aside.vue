@@ -1,91 +1,92 @@
 <template>
-<Modal ref="modal" @on-submit="addOrder" :title="'Tạo đơn hàng mới'">
-  <div class="modal-body">
-    <form @submit.prevent="addOrder" class="add-order-form">
-      <div class="data-set">
-        <fieldset>
-          <legend>Đơn hàng</legend>
-          <div class="form-group">
-            <label for="client">Khách hàng</label>
-            <input type="text" id="client" name="client" v-model="orderModel.client" autocomplete="off">
+  <aside>
+    <Modal ref="modal" @on-submit="addOrder" :title="'Tạo đơn hàng mới'">
+      <div class="modal-body">
+        <form @submit.prevent="addOrder" class="add-order-form">
+          <div class="data-set">
+            <fieldset>
+              <legend>Đơn hàng</legend>
+              <div class="form-group">
+                <label for="client">Khách hàng</label>
+                <v-select :options="['Canada', 'United States']"></v-select>
+              </div>
+              <div class="form-group">
+                <label for="category">Tên giống</label>
+                <input type="text" id="category" name="category" v-model="orderModel.category" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label for="amount">Số lượng</label>
+                <input type="number" id="amount" name="amount" v-model="orderModel.amount" autocomplete="off">
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Thông tin</legend>
+              <div class="form-group">
+                <label for="origin">Nguồn gốc</label>
+                <input type="text" id="origin" name="origin" v-model="orderModel.origin" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label for="start-date">Ngày cắm</label>
+                <DatePicker name="start_date" v-model="orderModel.start_date"/>
+              </div>
+              <div class="form-group">
+                <label for="end-date">Ngày xuất</label>
+                <DatePicker name="end_date" v-model="orderModel.end_date"/>
+              </div>
+            </fieldset>
           </div>
-          <div class="form-group">
-            <label for="category">Tên giống</label>
-            <input type="text" id="category" name="category" v-model="orderModel.category" autocomplete="off">
+          <div class="actions">
+            <a class="btn btn-cancel dismiss" @click="closeModal">Cancel</a>
+            <input type="submit" class="btn btn-submit" value="Create">
           </div>
-          <div class="form-group">
-            <label for="amount">Số lượng</label>
-            <input type="number" id="amount" name="amount" v-model="orderModel.amount" autocomplete="off">
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend>Thông tin</legend>
-          <div class="form-group">
-            <label for="origin">Nguồn gốc</label>
-            <input type="text" id="origin" name="origin" v-model="orderModel.origin" autocomplete="off">
-          </div>
-          <div class="form-group">
-            <label for="start-date">Ngày cắm</label>
-            <DatePicker name="start_date" v-model="orderModel.start_date"/>
-          </div>
-          <div class="form-group">
-            <label for="end-date">Ngày xuất</label>
-            <DatePicker name="end_date" v-model="orderModel.end_date"/>
-          </div>
-        </fieldset>
+        </form>
       </div>
-      <div class="actions">
-        <a class="btn btn-cancel dismiss" @click="$refs.modal.closeModal">Cancel</a>
-        <input type="submit" class="btn btn-submit" value="Create">
-      </div>
-    </form>
-  </div>
-</Modal>
-<aside>
-  <div class="user">
-    <svg v-svg="'icon-user'"></svg>
-    <span>User name</span>
-  </div>
-  <ul class="main-nav">
-    <li class="main-nav-item">
-      <router-link to="/general">
-        <svg v-svg="'icon-speedometer'"></svg>
-        <span>Tổng quan</span>
-      </router-link>
-    </li>
-    <li class="main-nav-item">
-      <router-link to="/orders">
-        <svg v-svg="'icon-file-tray'"></svg>
-        <span>Đơn Hàng</span>
-        <svg class="icon-add" v-svg="'icon-add'" @click="$refs.modal.openModal"></svg>
-      </router-link>
-    </li>
-    <li class="main-nav-item">
-      <router-link to="/clients">
-        <svg v-svg="'icon-people'"></svg>
-        <span>Khách hàng</span>
-      </router-link>
-    </li>
-    <li class="main-nav-item">
-      <router-link to="/people">
-        <svg v-svg="'icon-body'"></svg>
-        <span>Nhân viên</span>
-      </router-link>
-    </li>
-    <li class="main-nav-item">
-      <router-link to="cash">
-        <svg v-svg="'icon-cash'"></svg>
-        <span>Công nợ</span>
-      </router-link>
-    </li>
-  </ul>
-</aside>
+    </Modal>
+    <div class="user">
+      <svg v-svg="'icon-user'"></svg>
+      <span>User name</span>
+    </div>
+    <ul class="main-nav">
+      <li class="main-nav-item">
+        <router-link to="/general">
+          <svg v-svg="'icon-speedometer'"></svg>
+          <span>Tổng quan</span>
+        </router-link>
+      </li>
+      <li class="main-nav-item">
+        <router-link to="/orders">
+          <svg v-svg="'icon-file-tray'"></svg>
+          <span>Đơn Hàng</span>
+          <svg class="icon-add" v-svg="'icon-add'" @click="openModal"></svg>
+        </router-link>
+      </li>
+      <li class="main-nav-item">
+        <router-link to="/clients">
+          <svg v-svg="'icon-people'"></svg>
+          <span>Khách hàng</span>
+        </router-link>
+      </li>
+      <li class="main-nav-item">
+        <router-link to="/people">
+          <svg v-svg="'icon-body'"></svg>
+          <span>Nhân viên</span>
+        </router-link>
+      </li>
+      <li class="main-nav-item">
+        <router-link to="cash">
+          <svg v-svg="'icon-cash'"></svg>
+          <span>Công nợ</span>
+        </router-link>
+      </li>
+    </ul>
+  </aside>
 </template>
 
 <script>
 import Modal from './Modal.vue';
 import DatePicker from './DatePicker.vue';
 import showAlert from '../lib/alerts';
+
 export default {
   name: 'Aside',
   components: {
@@ -94,6 +95,8 @@ export default {
   },
   data() {
     return {
+      value: '',
+      options: ['Select option', 'options', 'selected', 'mulitple', 'label', 'searchable', 'clearOnSelect', 'hideSelected', 'maxHeight', 'allowEmpty', 'showLabels', 'onChange', 'touched'],
       orderModel: {
         client: null,
         category: null,
@@ -105,6 +108,12 @@ export default {
     }
   },
   methods: {
+    closeModal() {
+      this.$refs.modal.closeModal();
+    },
+    openModal() {
+      this.$refs.modal.openModal();
+    },
     async addOrder() {
       try {
         await this.$store.dispatch({

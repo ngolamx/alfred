@@ -1,58 +1,60 @@
 <template>
-<Dialog ref="dialog" @on-submit="deleteClient">
-  <div class="dialog-body">
-    <p>Bạn có muốn xóa khách hàng?</p>
-  </div>
-</Dialog>
-<div class="container">
-  <div class="main">
-    <div class="actions">
-      <input type="text" id="add-new" ref="input" name="add-new" placeholder="Thêm khách hàng mới" @keyup.enter="addNewClient">
-      <label for="add-new">
-        <svg v-svg="'icon-add-simple'"></svg>
-      </label>
-      <p @click="addNewClient">Thêm</p>
+  <div>
+    <Dialog ref="dialog" @on-submit="deleteClient">
+      <div class="dialog-body">
+        <p>Bạn có muốn xóa khách hàng?</p>
+      </div>
+    </Dialog>
+    <div class="container">
+      <div class="main">
+        <div class="actions">
+          <input type="text" id="add-new" ref="input" name="add-new" placeholder="Thêm khách hàng mới" @keyup.enter="addNewClient">
+          <label for="add-new">
+            <svg v-svg="'icon-add-simple'"></svg>
+          </label>
+          <p @click="addNewClient">Thêm</p>
+        </div>
+        <ul class="client-list">
+          <li v-for="client in clients" :key="client._key" @click="selectClient(client)" :class="client === selectedClient ? 'selected' : ''">{{client.name}}</li>
+        </ul>
+      </div>
+      <div class="side" v-if="selectedClient && shownPanel">
+        <div class="detail-body">
+          <div class="form-group">
+            <label for="name">Tên</label>
+            <input type="text" id="name" name="name" autocomplete="off"
+              @keyup.enter="updateClient($event.target.name, $event.target.value)"
+              :value="selectedClient.name">
+          </div>
+          <div class="form-group">
+            <label for="phone">Số điện thoại</label>
+            <input type="tel" id="phone" name="phone" autocomplete="off"
+              @focusout="updateClient($event.target.name, $event.target.value)"
+              @keyup.enter="updateClient($event.target.name, $event.target.value)"
+              :value="selectedClient.phone">
+          </div>
+          <div class="form-group">
+            <label for="address">Địa chỉ</label>
+            <input type="text" id="address" name="address" autocomplete="off"
+              @focusout="updateClient($event.target.name, $event.target.value)"
+              @keyup.enter="updateClient($event.target.name, $event.target.value)"
+              :value="selectedClient.address">
+          </div>
+        </div>
+        <footer>
+          <div class="close-panel" @click="shownPanel = false">
+              <svg v-svg="'icon-forward'"></svg>
+          </div>
+          <div class="created-date">
+            Ngày tạo: {{formatDate(selectedClient.createdAt)}}
+          </div>
+          <div class="delete-record" @click="$refs.dialog.openDialog">
+              <svg v-svg="'icon-delete'"></svg>
+          </div>
+        </footer>
+      </div>
     </div>
-    <ul class="client-list">
-      <li v-for="client in clients" :key="client._key" @click="selectClient(client)" :class="client === selectedClient ? 'selected' : ''">{{client.name}}</li>
-    </ul>
   </div>
-  <div class="side" v-if="selectedClient && shownPanel">
-    <div class="detail-body">
-      <div class="form-group">
-        <label for="name">Tên</label>
-        <input type="text" id="name" name="name" autocomplete="off"
-          @keyup.enter="updateClient($event.target.name, $event.target.value)"
-          :value="selectedClient.name">
-      </div>
-      <div class="form-group">
-        <label for="phone">Số điện thoại</label>
-        <input type="tel" id="phone" name="phone" autocomplete="off"
-          @focusout="updateClient($event.target.name, $event.target.value)"
-          @keyup.enter="updateClient($event.target.name, $event.target.value)"
-          :value="selectedClient.phone">
-      </div>
-      <div class="form-group">
-        <label for="address">Địa chỉ</label>
-        <input type="text" id="address" name="address" autocomplete="off"
-          @focusout="updateClient($event.target.name, $event.target.value)"
-          @keyup.enter="updateClient($event.target.name, $event.target.value)"
-          :value="selectedClient.address">
-      </div>
-    </div>
-    <footer>
-      <div class="close-panel" @click="shownPanel = false">
-          <svg v-svg="'icon-forward'"></svg>
-      </div>
-      <div class="created-date">
-        Ngày tạo: {{formatDate(selectedClient.createdAt)}}
-      </div>
-      <div class="delete-record" @click="$refs.dialog.openDialog">
-          <svg v-svg="'icon-delete'"></svg>
-      </div>
-    </footer>
-  </div>
-</div>
 </template>
 <script>
 import showAlert from '../lib/alerts';

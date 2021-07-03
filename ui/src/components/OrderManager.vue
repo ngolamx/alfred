@@ -1,108 +1,110 @@
 <template>
-<Dialog ref="dialog" @on-submit="deleteOrder">
-  <div class="dialog-body">
-    <p>Bạn có muốn xóa đơn hàng?</p>
-  </div>
-</Dialog>
-  <div class="container">
-    <div class="main">
-      <table class="table table-orders">
-        <thead>
-          <tr>
-            <th>Khách hàng</th>
-            <th>Tên giống</th>
-            <th>Số lượng</th>
-            <th>Nguồn gốc</th>
-            <th>Ngày cắm</th>
-            <th>Ngày xuất</th>
-          </tr>
-        </thead>
-        <tbody>
-          <template v-for="order in orders" :key="order._id">
-            <tr @click="selectOrder(order)" :class="(selectedOrder && order._id === selectedOrder._id) ? 'selected' : ''">
-                <td>
-                  <span>{{order.client}}</span>
-                  <span>Khách hàng</span>
-                </td>
-                <td>
-                  <span>{{order.category}}</span>
-                  <span>Tên giống</span>
-                </td>
-                <td>
-                  <span>{{order.amount}}</span>
-                  <span>Số lượng</span>
-                </td>
-                <td>
-                  <span>{{order.origin}}</span>
-                  <span>Nguồn gốc</span>
-                </td>
-                <td>
-                  <span>{{order.start_date}}</span>
-                  <span>Ngày cắm</span>
-                </td>
-                <td>
-                  <span>{{order.end_date}}</span>
-                  <span>Ngày xuất</span>
-                </td>
+  <div>
+    <Dialog ref="dialog" @on-submit="deleteOrder">
+      <div class="dialog-body">
+        <p>Bạn có muốn xóa đơn hàng?</p>
+      </div>
+    </Dialog>
+      <div class="container">
+        <div class="main">
+          <table class="table table-orders">
+            <thead>
+              <tr>
+                <th>Khách hàng</th>
+                <th>Tên giống</th>
+                <th>Số lượng</th>
+                <th>Nguồn gốc</th>
+                <th>Ngày cắm</th>
+                <th>Ngày xuất</th>
               </tr>
-          </template>
-        </tbody>
-      </table>
-    </div>
-    <div class="side" v-if="selectedOrder && shownPanel">
-      <div class="detail-body">
-        <div class="form-group">
-          <label for="client">Khách hàng</label>
-          <input type="text" id="client" name="client" autocomplete="off"
-            @keyup.enter="updateOrder($event.target.name, $event.target.value)"
-            :value="selectedOrder.client">
+            </thead>
+            <tbody>
+              <template v-for="order in orders">
+                <tr :key="order._id" @click="selectOrder(order)" :class="(selectedOrder && order._id === selectedOrder._id) ? 'selected' : ''">
+                    <td>
+                      <span>{{order.client}}</span>
+                      <span>Khách hàng</span>
+                    </td>
+                    <td>
+                      <span>{{order.category}}</span>
+                      <span>Tên giống</span>
+                    </td>
+                    <td>
+                      <span>{{order.amount}}</span>
+                      <span>Số lượng</span>
+                    </td>
+                    <td>
+                      <span>{{order.origin}}</span>
+                      <span>Nguồn gốc</span>
+                    </td>
+                    <td>
+                      <span>{{order.start_date}}</span>
+                      <span>Ngày cắm</span>
+                    </td>
+                    <td>
+                      <span>{{order.end_date}}</span>
+                      <span>Ngày xuất</span>
+                    </td>
+                  </tr>
+              </template>
+            </tbody>
+          </table>
         </div>
-        <div class="form-group">
-          <label for="category">Tên giống</label>
-          <input type="text" id="category" name="category" autocomplete="off"
-            @focusout="updateOrder($event.target.name, $event.target.value)"
-            @keyup.enter="updateOrder($event.target.name, $event.target.value)"
-            :value="selectedOrder.category">
-        </div>
-        <div class="form-group">
-          <label for="amount">Số lượng</label>
-          <input type="number" id="amount" name="amount" autocomplete="off"
-            @focusout="updateOrder($event.target.name, $event.target.value)"
-            @keyup.enter="updateOrder($event.target.name, $event.target.value)"
-            :value="selectedOrder.amount">
-        </div>
-        <div class="form-group">
-          <label for="origin">Nguồn gốc</label>
-          <input type="text" id="origin" name="origin" autocomplete="off"
-            @focusout="updateOrder($event.target.name, $event.target.value)"
-            @keyup.enter="updateOrder($event.target.name, $event.target.value)"
-            :value="selectedOrder.origin">
-        </div>
-        <div class="form-group">
-          <label for="start-date">Ngày cắm</label>
-          <DatePicker name="start_date"
-            @onchange="updateOrder($event.name, $event.value)"
-            :value="selectedOrder.start_date"/>
-        </div>
-        <div class="form-group">
-          <label for="end-date">Ngày xuất</label>
-          <DatePicker name="end_date"
-            @onchange="updateOrder($event.name, $event.value)"
-            :value="selectedOrder.end_date"/>
+        <div class="side" v-if="selectedOrder && shownPanel">
+          <div class="detail-body">
+            <div class="form-group">
+              <label for="client">Khách hàng</label>
+              <input type="text" id="client" name="client" autocomplete="off"
+                @keyup.enter="updateOrder($event.target.name, $event.target.value)"
+                :value="selectedOrder.client">
+            </div>
+            <div class="form-group">
+              <label for="category">Tên giống</label>
+              <input type="text" id="category" name="category" autocomplete="off"
+                @focusout="updateOrder($event.target.name, $event.target.value)"
+                @keyup.enter="updateOrder($event.target.name, $event.target.value)"
+                :value="selectedOrder.category">
+            </div>
+            <div class="form-group">
+              <label for="amount">Số lượng</label>
+              <input type="number" id="amount" name="amount" autocomplete="off"
+                @focusout="updateOrder($event.target.name, $event.target.value)"
+                @keyup.enter="updateOrder($event.target.name, $event.target.value)"
+                :value="selectedOrder.amount">
+            </div>
+            <div class="form-group">
+              <label for="origin">Nguồn gốc</label>
+              <input type="text" id="origin" name="origin" autocomplete="off"
+                @focusout="updateOrder($event.target.name, $event.target.value)"
+                @keyup.enter="updateOrder($event.target.name, $event.target.value)"
+                :value="selectedOrder.origin">
+            </div>
+            <div class="form-group">
+              <label for="start-date">Ngày cắm</label>
+              <DatePicker name="start_date"
+                @onchange="updateOrder($event.name, $event.value)"
+                :value="selectedOrder.start_date"/>
+            </div>
+            <div class="form-group">
+              <label for="end-date">Ngày xuất</label>
+              <DatePicker name="end_date"
+                @onchange="updateOrder($event.name, $event.value)"
+                :value="selectedOrder.end_date"/>
+            </div>
+          </div>
+          <footer>
+            <div class="close-panel" @click="closePanel">
+                <svg v-svg="'icon-forward'"></svg>
+            </div>
+            <div class="created-date">
+              Ngày tạo: {{formatDate(selectedOrder.createdAt)}}
+            </div>
+            <div class="delete-record" @click="$refs.dialog.openDialog">
+                <svg v-svg="'icon-delete'"></svg>
+            </div>
+          </footer>
         </div>
       </div>
-      <footer>
-        <div class="close-panel" @click="closePanel">
-            <svg v-svg="'icon-forward'"></svg>
-        </div>
-        <div class="created-date">
-          Ngày tạo: {{formatDate(selectedOrder.createdAt)}}
-        </div>
-        <div class="delete-record" @click="$refs.dialog.openDialog">
-            <svg v-svg="'icon-delete'"></svg>
-        </div>
-      </footer>
-    </div>
   </div>
 </template>
 

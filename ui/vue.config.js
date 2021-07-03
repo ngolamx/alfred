@@ -9,6 +9,7 @@ module.exports = {
     loaderOptions: {
       sass: {
         additionalData: `
+          @import "vue-select/src/scss/vue-select.scss";
           @import "@/assets/css/tiny-date-picker.min";
           @import "@/assets/css/components/date-picker.scss";
           @import "@/assets/css/variables.scss";

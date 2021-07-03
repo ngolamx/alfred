@@ -1,26 +1,29 @@
-import { createApp } from 'vue/dist/vue.esm-bundler'
-import store from './store'
-import { createRouter, createWebHashHistory } from 'vue-router';
+import Vue from 'vue'
 import App from './App.vue'
+import Home from './components/Home.vue'
+import VueRouter from 'vue-router'
 import ClientManager from './components/ClientManager.vue'
 import OrderManager from './components/OrderManager.vue'
 import Login from './components/Login.vue';
-import { svgSpriteDirectivePlugin } from 'vue-svg-sprite'
+import SvgSprite from 'vue-svg-sprite';
+import vSelect from 'vue-select'
+import store from './store'
+
+Vue.config.productionTip = false
 
 const routes = [
-  { path: '/', name: 'App', component: App,
+  { path: '/login', name: 'Login', component: Login },
+  { path: '/', component: Home,
     children: [
       { path: '', component: OrderManager },
       { path: '/orders', name: 'Orders', component: OrderManager },
       { path: '/clients', name: 'Client', component: ClientManager }
     ]
-  },
-  { path: '/login', name: 'Login', component: Login },
+  }
 ]
 
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes,
+const router = new VueRouter({
+  routes // short for `routes: routes`
 })
 
 router.beforeEach((to, from, next) => {
@@ -28,12 +31,16 @@ router.beforeEach((to, from, next) => {
  else next()
 })
 
+Vue.use(VueRouter)
+Vue.component('v-select', vSelect)
 
-const app = createApp({})
-app.use(store);
-app.use(router);
-app.use(svgSpriteDirectivePlugin, {
+Vue.use(SvgSprite, {
   url: require('./assets/img/sprite.svg')
-} /* options */)
+});
 
-app.mount('#app')
+
+new Vue({
+  router,
+  store,
+  render: h => h(App),
+}).$mount('#app')

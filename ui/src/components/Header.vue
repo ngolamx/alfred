@@ -13,12 +13,12 @@
       </a>
     </li>
   </ul>
+  <Dialog ref="dialog" @on-submit="logOut">
+    <div class="dialog-body">
+      <p>Bạn có muốn thoát khỏi ứng dụng?</p>
+    </div>
+  </Dialog>
 </header>
-<Dialog ref="dialog" @on-submit="logOut">
-  <div class="dialog-body">
-    <p>Bạn có muốn thoát khỏi ứng dụng?</p>
-  </div>
-</Dialog>
 </template>
 
 <script>

@@ -1,7 +1,11 @@
-import Vuex, { createStore, createLogger } from 'vuex'
+import Vue from 'vue'
+import Vuex from 'vuex'
 import orders from './modules/orders'
 import clients from './modules/clients'
 import axios from 'axios'
+import { createLogger } from 'vuex'
+
+Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
 
@@ -28,7 +32,7 @@ instance.interceptors.response.use(function (response) {
 
 Vuex.Store.prototype.$http = instance;
 
-export default createStore({
+export default new Vuex.Store({
   http: "http",
   modules: {
     orders,

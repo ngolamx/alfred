@@ -23,7 +23,6 @@
 <script>
 export default {
   name: 'Dialog',
-  emits: ['onSubmit'],
   data() {
     return {
       show: false,
@@ -37,7 +36,7 @@ export default {
   methods: {
     closeDialog() {
       this.show = false;
-      this.$emit('onSubmit');
+      this.$emit('on-submit');
     },
     openDialog() {
       this.show = true;
