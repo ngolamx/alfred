@@ -21,9 +21,17 @@ const orderSchema = new mongoose.Schema({
   },
   client: {
     type: mongoose.Schema.ObjectId,
-    ref: 'User',
+    ref: 'Client',
     required: [true, 'Nhập tên khách hàng']
   }
+});
+
+orderSchema.pre(/^find/, function(next) {
+  this.populate({
+    path: 'client',
+    select: 'name'
+  });
+  next();
 });
 
 const Order = mongoose.model('Order', orderSchema);

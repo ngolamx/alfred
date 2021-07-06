@@ -8,7 +8,7 @@
               <legend>Đơn hàng</legend>
               <div class="form-group">
                 <label for="client">Khách hàng</label>
-                <v-select :options="['Canada', 'United States']"></v-select>
+                <v-select :options="clients" label="name" v-model="orderModel.client" :reduce="client => client._id"></v-select>
               </div>
               <div class="form-group">
                 <label for="category">Tên giống</label>
@@ -86,6 +86,7 @@
 import Modal from './Modal.vue';
 import DatePicker from './DatePicker.vue';
 import showAlert from '../lib/alerts';
+import { mapState } from 'vuex'
 
 export default {
   name: 'Aside',
@@ -95,24 +96,22 @@ export default {
   },
   data() {
     return {
-      value: '',
-      options: ['Select option', 'options', 'selected', 'mulitple', 'label', 'searchable', 'clearOnSelect', 'hideSelected', 'maxHeight', 'allowEmpty', 'showLabels', 'onChange', 'touched'],
-      orderModel: {
-        client: null,
-        category: null,
-        amount: 0,
-        origin: null,
-        start_date: null,
-        end_date: null
-      }
+      orderModel: {}
     }
+  },
+  computed: {
+    ...mapState({
+      clients: state => state.clients.all
+    })
   },
   methods: {
     closeModal() {
       this.$refs.modal.closeModal();
     },
     openModal() {
+      this.orderModel = {};
       this.$refs.modal.openModal();
+      this.$store.dispatch('clients/getAllClients')
     },
     async addOrder() {
       try {
@@ -122,6 +121,7 @@ export default {
         });
         showAlert('success', 'Tạo đơn hàng thành công');
         this.$refs.modal.closeModal();
+        this.$store.dispatch('orders/getAllOrders')
       } catch(error) {
         showAlert('error', error.message);
       }

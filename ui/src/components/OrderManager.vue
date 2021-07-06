@@ -22,7 +22,7 @@
               <template v-for="order in orders">
                 <tr :key="order._id" @click="selectOrder(order)" :class="(selectedOrder && order._id === selectedOrder._id) ? 'selected' : ''">
                     <td>
-                      <span>{{order.client}}</span>
+                      <span>{{order.client.name}}</span>
                       <span>Khách hàng</span>
                     </td>
                     <td>
@@ -54,9 +54,8 @@
           <div class="detail-body">
             <div class="form-group">
               <label for="client">Khách hàng</label>
-              <input type="text" id="client" name="client" autocomplete="off"
-                @keyup.enter="updateOrder($event.target.name, $event.target.value)"
-                :value="selectedOrder.client">
+              <v-select clearable="false" :options="clients" label="name" :value="selectedOrder.client" :reduce="client => client._id"
+                @input="updateOrderClient"></v-select>
             </div>
             <div class="form-group">
               <label for="category">Tên giống</label>
@@ -128,11 +127,13 @@ export default {
   },
   computed: {
     ...mapState({
-    orders: state => state.orders.all
+    orders: state => state.orders.all,
+    clients: state => state.clients.all
     })
   },
   created() {
     this.$store.dispatch('orders/getAllOrders')
+    this.$store.dispatch('clients/getAllClients')
   },
   methods: {
     selectOrder(order) {
@@ -158,6 +159,14 @@ export default {
       const date = new Date(dateStr);
       var options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' };
       return date.toLocaleDateString('vi-vi', options);
+    },
+    updateOrderClient(value) {
+      this.$store.dispatch({
+        type: 'orders/updateOrder',
+        id: this.selectedOrder._id,
+        key: 'client',
+        value
+      });
     },
     updateOrder(key, value) {
       this.$store.dispatch({
