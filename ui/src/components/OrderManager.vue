@@ -38,11 +38,11 @@
                       <span>Nguồn gốc</span>
                     </td>
                     <td>
-                      <span>{{order.start_date}}</span>
+                      <span>{{order.start_date ? new Date(order.start_date).toLocaleDateString('vi') : ''}}</span>
                       <span>Ngày cắm</span>
                     </td>
                     <td>
-                      <span>{{order.end_date}}</span>
+                      <span>{{order.end_date ? new Date(order.end_date).toLocaleDateString('vi') : ''}}</span>
                       <span>Ngày xuất</span>
                     </td>
                   </tr>
@@ -54,7 +54,7 @@
           <div class="detail-body">
             <div class="form-group">
               <label for="client">Khách hàng</label>
-              <v-select clearable="false" :options="clients" label="name" :value="selectedOrder.client" :reduce="client => client._id"
+              <v-select :options="clients" label="name" :value="selectedOrder.client" :reduce="client => client._id"
                 @input="updateOrderClient"></v-select>
             </div>
             <div class="form-group">
@@ -78,25 +78,47 @@
                 @keyup.enter="updateOrder($event.target.name, $event.target.value)"
                 :value="selectedOrder.origin">
             </div>
-            <div class="form-group">
-              <label for="start-date">Ngày cắm</label>
-              <DatePicker name="start_date"
-                @onchange="updateOrder($event.name, $event.value)"
-                :value="selectedOrder.start_date"/>
-            </div>
-            <div class="form-group">
-              <label for="end-date">Ngày xuất</label>
-              <DatePicker name="end_date"
-                @onchange="updateOrder($event.name, $event.value)"
-                :value="selectedOrder.end_date"/>
-            </div>
+            <v-date-picker v-model="range" is-range @input="updateDate" locale="vi">
+              <template v-slot="{ inputValue, inputEvents }">
+                <div class="flex justify-center items-center">
+                  <div class="form-group">
+                  <label for="'start_date'">Ngày cắm</label>
+                    <input
+                      id="'start_date'"
+                      :value="inputValue.start"
+                      v-on="inputEvents.start"
+                      class="border px-2 py-1 w-32 rounded focus:outline-none focus:border-indigo-300"
+                    />
+                    <label class="icon-calendar" :for="'start_date'">
+                      <svg>
+                        <use xlink:href="@/assets/img/sprite.svg#icon-calendar"></use>
+                      </svg>
+                    </label>
+                  </div>
+                  <div class="form-group">
+                    <label for="'end_date'">Ngày xuất</label>
+                    <input
+                      id="'end_date'"
+                      :value="inputValue.end"
+                      v-on="inputEvents.end"
+                      class="border px-2 py-1 w-32 rounded focus:outline-none focus:border-indigo-300"
+                    />
+                    <label class="icon-calendar" :for="'end_date'">
+                      <svg>
+                        <use xlink:href="@/assets/img/sprite.svg#icon-calendar"></use>
+                      </svg>
+                    </label>
+                  </div>
+                </div>
+              </template>
+            </v-date-picker>
           </div>
           <footer>
             <div class="close-panel" @click="closePanel">
                 <svg v-svg="'icon-forward'"></svg>
             </div>
             <div class="created-date">
-              Ngày tạo: {{formatDate(selectedOrder.createdAt)}}
+              Ngày tạo: {{new Date(selectedOrder.createdAt).toLocaleString('vi')}}
             </div>
             <div class="delete-record" @click="$refs.dialog.openDialog">
                 <svg v-svg="'icon-delete'"></svg>
@@ -109,7 +131,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import DatePicker from './DatePicker'
 import Dialog from './Dialog'
 import showAlert from '../lib/alerts';
 
@@ -122,13 +143,23 @@ export default {
     }
   },
   components: {
-    DatePicker,
     Dialog
   },
   computed: {
+    range: {
+      set(newValue) {
+        return newValue;
+      },
+      get() {
+        return {
+          start: this.selectedOrder.start_date ? new Date(this.selectedOrder.start_date) : '',
+          end: this.selectedOrder.end_date ? new Date(this.selectedOrder.end_date) : '',
+        };
+      }
+    },
     ...mapState({
-    orders: state => state.orders.all,
-    clients: state => state.clients.all
+      orders: state => state.orders.all,
+      clients: state => state.clients.all
     })
   },
   created() {
@@ -155,10 +186,15 @@ export default {
         showAlert('success', error);
       }
     },
-    formatDate(dateStr) {
-      const date = new Date(dateStr);
-      var options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' };
-      return date.toLocaleDateString('vi-vi', options);
+    updateDate(value) {
+      this.$store.dispatch({
+        type: 'orders/updateOrder',
+        id: this.selectedOrder._id,
+        data: {
+          start_date: value.start,
+          end_date: value.end
+        }
+      });
     },
     updateOrderClient(value) {
       this.$store.dispatch({
@@ -172,8 +208,9 @@ export default {
       this.$store.dispatch({
         type: 'orders/updateOrder',
         id: this.selectedOrder._id,
-        key,
-        value
+        data: {
+          [key]: value
+        }
       });
     }
   }

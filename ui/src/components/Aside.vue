@@ -25,14 +25,42 @@
                 <label for="origin">Nguồn gốc</label>
                 <input type="text" id="origin" name="origin" v-model="orderModel.origin" autocomplete="off">
               </div>
-              <div class="form-group">
-                <label for="start-date">Ngày cắm</label>
-                <DatePicker name="start_date" v-model="orderModel.start_date"/>
-              </div>
-              <div class="form-group">
-                <label for="end-date">Ngày xuất</label>
-                <DatePicker name="end_date" v-model="orderModel.end_date"/>
-              </div>
+              <v-date-picker v-model="range" is-range locale="vi">
+                <template v-slot="{ inputValue, inputEvents }">
+                  <div class="flex justify-center items-center">
+                    <div class="form-group">
+                    <label for="'dg_start_date'">Ngày cắm</label>
+                      <input
+                        id="'dg_start_date'"
+                        :value="inputValue.start"
+                        autocomplete="off"
+                        v-on="inputEvents.start"
+                        class="border px-2 py-1 w-32 rounded focus:outline-none focus:border-indigo-300"
+                      />
+                      <label class="icon-calendar" :for="'start_date'">
+                        <svg>
+                          <use xlink:href="@/assets/img/sprite.svg#icon-calendar"></use>
+                        </svg>
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label for="'dg_end_date'">Ngày xuất</label>
+                      <input
+                        id="'dg_end_date'"
+                        :value="inputValue.end"
+                        autocomplete="off"
+                        v-on="inputEvents.end"
+                        class="border px-2 py-1 w-32 rounded focus:outline-none focus:border-indigo-300"
+                      />
+                      <label class="icon-calendar" :for="'end_date'">
+                        <svg>
+                          <use xlink:href="@/assets/img/sprite.svg#icon-calendar"></use>
+                        </svg>
+                      </label>
+                    </div>
+                  </div>
+                </template>
+              </v-date-picker>
             </fieldset>
           </div>
           <div class="actions">
@@ -84,15 +112,13 @@
 
 <script>
 import Modal from './Modal.vue';
-import DatePicker from './DatePicker.vue';
 import showAlert from '../lib/alerts';
 import { mapState } from 'vuex'
 
 export default {
   name: 'Aside',
   components: {
-    Modal,
-    DatePicker
+    Modal
   },
   data() {
     return {
@@ -100,6 +126,18 @@ export default {
     }
   },
   computed: {
+    range: {
+      set(newValue) {
+        this.orderModel.start_date = newValue.start;
+        this.orderModel.end_date = newValue.end;
+      },
+      get() {
+        return {
+          start: null,
+          end: null
+        };
+      }
+    },
     ...mapState({
       clients: state => state.clients.all
     })
@@ -332,17 +370,5 @@ form .actions > *:first-child {
 .form-group .date-picker {
   width: calc(100% - 25px);
   cursor: pointer;
-}
-
-label.icon-calendar {
-  position: absolute;
-  top: 33px;
-  right: 0;
-}
-
-label.icon-calendar svg {
-  width: 20px;
-  height: 20px;
-  color: currentColor;
 }
 </style>

@@ -17,9 +17,7 @@ const actions = {
     return order;
   },
   async updateOrder ({ commit }, payload) {
-    const order = await this.$http.patch(`/orders/${payload.id}`, {
-      [payload.key]: payload.value
-    });
+    const order = await this.$http.patch(`/orders/${payload.id}`, payload.data);
     commit('updateOrder', order)
   },
   async deleteOrder ({ commit }, payload) {

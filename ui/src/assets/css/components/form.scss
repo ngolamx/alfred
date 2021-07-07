@@ -155,3 +155,16 @@ label.icon-calendar svg {
     transform: rotate(180deg) scale(.8);
   }
 }
+
+label.icon-calendar {
+  position: absolute;
+  top: 35px;
+  right: 3px;
+  cursor: pointer;
+}
+
+label.icon-calendar svg {
+  width: 18px;
+  height: 18px;
+  color: #666;
+}

@@ -7,6 +7,7 @@ import OrderManager from './components/OrderManager.vue'
 import Login from './components/Login.vue';
 import SvgSprite from 'vue-svg-sprite';
 import vSelect from 'vue-select'
+import VCalendar from 'v-calendar';
 import store from './store'
 
 Vue.config.productionTip = false
@@ -33,6 +34,13 @@ router.beforeEach((to, from, next) => {
 
 Vue.use(VueRouter)
 Vue.component('v-select', vSelect)
+Vue.use(VCalendar, {
+  datePicker: {
+    popover: {
+      visibility: 'focus'
+    }
+ }
+});
 
 Vue.use(SvgSprite, {
   url: require('./assets/img/sprite.svg')
