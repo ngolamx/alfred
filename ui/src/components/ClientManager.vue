@@ -1,5 +1,32 @@
 <template>
   <div>
+    <Modal ref="modal" @on-submit="addNewClient" :title="'Tạo khách hàng mới'">
+      <div class="modal-body">
+        <form @submit.prevent="addNewClient" class="add-order-form">
+          <div class="data-set">
+            <fieldset>
+              <legend>Khách hàng</legend>
+              <div class="form-group">
+                <label for="name">Tên</label>
+                <input type="text" id="name" name="name" v-model="clientModel.name" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label for="phone">Số điện thoại</label>
+                <input type="tel" id="phone" name="phone" v-model="clientModel.phone" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label for="address">Địa chỉ</label>
+                <input type="text" id="address" name="address" v-model="clientModel.address" autocomplete="off">
+              </div>
+            </fieldset>
+          </div>
+          <div class="actions">
+            <a class="btn btn-cancel dismiss" @click="closeModal">Cancel</a>
+            <input type="submit" class="btn btn-submit" value="Create">
+          </div>
+        </form>
+      </div>
+    </Modal>
     <Dialog ref="dialog" @on-submit="deleteClient">
       <div class="dialog-body">
         <p>Bạn có muốn xóa khách hàng?</p>
@@ -7,15 +34,29 @@
     </Dialog>
     <div class="container">
       <div class="main">
-        <div class="actions">
-          <input type="text" id="add-new" ref="input" name="add-new" placeholder="Thêm khách hàng mới" @keyup.enter="addNewClient">
-          <label for="add-new">
+        <div class="inline-actions">
+          <input type="text" id="add-new" ref="input" v-model="clientModel.name" name="add-new" placeholder="Thêm khách hàng mới" @keyup.enter="addNewClient">
+          <label for="add-new" @click="openModal" class="add-new">
             <svg v-svg="'icon-add-simple'"></svg>
           </label>
           <p @click="addNewClient">Thêm</p>
         </div>
         <ul class="client-list">
-          <li v-for="client in clients" :key="client._key" @click="selectClient(client)" :class="client === selectedClient ? 'selected' : ''">{{client.name}}</li>
+          <li v-for="client in clients" :key="client._key" @click="selectClient(client)" :class="client === selectedClient ? 'selected' : ''">
+            <div class="block">
+              <p class="value">{{client.name}}</p>
+              <p class="title">Tên</p>
+            </div>
+            <div class="block">
+              <p class="value">{{client.phone ? client.phone : '&nbsp;'}}</p>
+              <p class="title">Số điện thoại</p>
+            </div>
+            <div class="block">
+              <p class="value">{{client.address ? client.address : '&nbsp;'}}</p>
+              <p class="title">Địa chỉ</p>
+            </div>
+
+          </li>
         </ul>
       </div>
       <div class="side" v-if="selectedClient && shownPanel">
@@ -46,7 +87,7 @@
               <svg v-svg="'icon-forward'"></svg>
           </div>
           <div class="created-date">
-            Ngày tạo: {{formatDate(selectedClient.createdAt)}}
+            Ngày tạo: {{new Date(selectedClient.createdAt).toLocaleString('vi')}}
           </div>
           <div class="delete-record" @click="$refs.dialog.openDialog">
               <svg v-svg="'icon-delete'"></svg>
@@ -59,17 +100,20 @@
 <script>
 import showAlert from '../lib/alerts';
 import { mapState } from 'vuex'
+import Modal from './Modal.vue';
 import Dialog from './Dialog'
 
 export default {
   name: 'ClientManager',
   components: {
-    Dialog
+    Dialog,
+    Modal
   },
   data() {
     return {
       shownPanel: false,
-      selectedClient: null
+      selectedClient: null,
+      clientModel: {}
     }
   },
   computed: {
@@ -81,21 +125,27 @@ export default {
     this.$store.dispatch('clients/getAllClients')
   },
   methods: {
+    closeModal() {
+      this.$refs.modal.closeModal();
+    },
+    openModal() {
+      this.$refs.modal.openModal();
+    },
     selectClient(client) {
       this.selectedClient = client;
       this.shownPanel = true;
     },
     async addNewClient() {
-      const clientName = this.$refs.input.value;
       try {
         const newClient = await this.$store.dispatch({
           type: 'clients/createClient',
-          data: { name: clientName }
+          data: this.clientModel
         });
         showAlert('success', 'Tạo khách hàng thành công');
-        this.$refs.input.value = '';
         this.$refs.input.blur();
         this.selectedClient = newClient;
+        this.closeModal();
+        this.clientModel = {};
       } catch(err) {
         showAlert('error', err);
       }
@@ -123,19 +173,20 @@ export default {
       } catch (error) {
         showAlert('success', error);
       }
-    },
-    formatDate(dateStr) {
-      const date = new Date(dateStr);
-      var options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' };
-      return date.toLocaleDateString('vi-vi', options);
-    },
+    }
   }
 }
 
 </script>
 
 <style lang="scss" scoped>
-.actions {
+.add-new {
+  cursor: pointer;
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+.inline-actions {
   margin: 10px;
   display: flex;
   justify-content: flex-start;
@@ -183,6 +234,8 @@ export default {
   list-style: none;
   margin: 1rem;
   li {
+    display: flex;
+    justify-content: space-between;
     padding: 5px 1rem;
     cursor: pointer;
     transition: all .2s ease-out;
@@ -196,6 +249,18 @@ export default {
     }
     &.selected {
       background-color: #e3eef1;
+    }
+
+    .block {
+      width: calc(100% / 3);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      p:last-child {
+        color: var(--color-background);
+        font-size: 1.3rem;
+        font-weight: 400;
+      }
     }
   }
 }
