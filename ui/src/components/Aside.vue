@@ -95,16 +95,21 @@
         </router-link>
       </li>
       <li class="main-nav-item">
-        <router-link to="/people">
-          <svg v-svg="'icon-body'"></svg>
-          <span>Nhân viên</span>
-        </router-link>
-      </li>
-      <li class="main-nav-item">
         <router-link to="cash">
           <svg v-svg="'icon-cash'"></svg>
           <span>Công nợ</span>
         </router-link>
+      </li>
+      <li class="main-nav-item main-nav-item--with-sub">
+        <label for="tracking" class="tracking-label">
+          <svg v-svg="'icon-body'"></svg>
+          <span>Quản lý</span>
+        </label>
+        <input type="checkbox" id="tracking">
+        <ul class="sub-menu">
+          <li>Kho</li>
+          <li>Cây giống</li>
+        </ul>
       </li>
     </ul>
   </aside>
@@ -209,6 +214,9 @@ aside .main-nav-item {
   align-items: center;
   position: relative;
   width: 100%;
+  &--with-sub {
+    display: block;
+  }
 }
 
 .icon-add {
@@ -271,6 +279,18 @@ aside .main-nav-item:not(.active):hover {
     background-color: var(--color-text-white);
     width: 100%;
   }
+}
+
+#tracking {
+  display: none;
+}
+
+.tracking-label {
+  width: 100%;
+}
+
+#tracking:not(:checked) ~ .sub-menu {
+  display: none;
 }
 
 /* FORM */
@@ -371,4 +391,5 @@ form .actions > *:first-child {
   width: calc(100% - 25px);
   cursor: pointer;
 }
+
 </style>

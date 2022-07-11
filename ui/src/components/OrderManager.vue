@@ -200,8 +200,9 @@ export default {
       this.$store.dispatch({
         type: 'orders/updateOrder',
         id: this.selectedOrder._id,
-        key: 'client',
-        value
+        data: {
+          client: value
+        }
       });
     },
     updateOrder(key, value) {

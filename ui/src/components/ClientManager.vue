@@ -240,12 +240,11 @@ export default {
     cursor: pointer;
     transition: all .2s ease-out;
     &:not(:last-child) {
-      border-bottom: 0.5px solid var(--color-background);
+      box-shadow: 0 1px 0 0px #e5e5e5;
     }
     &:hover {
       background-color: #e5fafe;
-      border-bottom: 0.5px solid transparent;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.23);
+      box-shadow: 0 1px 0 0px #e5e5e5;
     }
     &.selected {
       background-color: #e3eef1;
